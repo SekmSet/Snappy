@@ -12,10 +12,8 @@ const RegisterPage = () => {
 
   const onSubmit = async values => {
     const result = await fetchRegister({
-      login : values.login,
       email: values.email,
       password: values.password,
-      passwordConfirm: values.passwordConfirm
     });
 
     if (result.error) {
@@ -30,15 +28,8 @@ const RegisterPage = () => {
   return (
     <div>
       {error !== '' && error}
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input
-          name="login"
-          ref={register({
-            required: 'Required',
-          })}
-        />
-        {errors.login && errors.login.message}
 
+      <form onSubmit={handleSubmit(onSubmit)}>
         <input
           name="email"
           type="email"
@@ -61,16 +52,7 @@ const RegisterPage = () => {
         />
         {errors.password && errors.password.message}
 
-        <input
-          name="passwordConfirm"
-          type="password"
-          ref={register({
-            required: 'Required',
-          })}
-        />
-        {errors.passwordConfirm && errors.passwordConfirm.message}
-
-        <button type="submit">Login</button>
+        <button type="submit">Register</button>
       </form>
     </div>
   );

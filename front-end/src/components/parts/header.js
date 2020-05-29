@@ -7,7 +7,7 @@ import {getCurentUser, isAuthenticated} from '../../service/auth/login';
 
 const Header = () => {
 
-  const user = getCurentUser();
+  const email = getCurentUser();
   const isAuth = isAuthenticated();
 
   return (
@@ -40,7 +40,7 @@ const Header = () => {
 
         </ul>
         {isAuth && (
-          <span className="nav-link disabled" >{user.login}</span>
+          <span className="nav-link disabled" >{email}</span>
         )}
       </div>
     </nav>

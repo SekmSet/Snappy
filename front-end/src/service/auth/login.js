@@ -1,34 +1,29 @@
-const jwtDecode = require('jwt-decode');
-const headers = new Headers();
-headers.append('Content-Type', 'application/json');
-
+const axios = require('axios');
 const token = localStorage.getItem('token');
-if (token) {
-  headers.append('Authorization', 'Basic ' + token);
-}
+const email = localStorage.getItem('email');
+// if (token) {
+//   headers.append('Authorization', 'Basic ' + token);
+// }
 
-export async function fetchLogin (login, password) {
-  const requestOptions = {
-    method: 'POST',
-    headers: headers,
-    body: JSON.stringify({login, password})
-  };
+export async function fetchLogin (email, password) {
 
-  const response = await fetch(
-    'http://localhost:4242/login', requestOptions
-  );
+  try {
+    const reponse = await axios.post('http://snapi.epitech.eu/connection', {email, password});
+     return reponse.data.data;
 
-  return await response.json();
+  } catch (e){
+    return {error: e.response.data.data};
+  }
 }
 
 export function isAuthenticated () {
-  return (token);
+  return (token)
 }
 
 export function getCurentUser () {
-  if (!isAuthenticated()) {
+  if (!isAuthenticated() || token === 'undefined') {
     return false;
   }
 
-  return jwtDecode(token);
+  return email;
 }
