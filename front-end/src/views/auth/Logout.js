@@ -4,6 +4,7 @@ const LogoutPage = () => {
   const history = useHistory();
 
   localStorage.removeItem('token');
+  localStorage.removeItem('email');
   history.push('/');
   window.location.reload();
 

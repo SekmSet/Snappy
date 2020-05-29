@@ -19,24 +19,11 @@ const Header = () => {
             <Link className="nav-link" to="/">Home</Link><span className="sr-only">(current)</span>
           </li>
 
-          {!isAuth && (
-            <li className="nav-item">
-              <Link className="nav-link" to="/login">Login</Link>
-            </li>
-          )}
-
-          {!isAuth && (
-            <li className="nav-item">
-              <Link className="nav-link" to="/register">Register</Link>
-            </li>
-          )}
-
           {isAuth && (
             <li className="nav-item">
               <Link className="nav-link" to="/logout">Logout</Link>
             </li>
           )}
-
 
         </ul>
         {isAuth && (

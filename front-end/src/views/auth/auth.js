@@ -2,37 +2,50 @@ import React, {useState} from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 
+import {fetchLogin} from '../../service/auth/login';
 import {fetchRegister} from '../../service/auth/register';
 
-const RegisterPage = () => {
+const AuthPage = () => {
   const [error, setError] = useState('');
   const { handleSubmit, register, errors } = useForm();
 
   const history = useHistory();
 
-  const onSubmit = async values => {
-    const result = await fetchRegister({
-      email: values.email,
-      password: values.password,
-    });
+  const loginSubmit = async values => {
+    const result = await fetchLogin(values.email, values.password);
 
     if (result.error) {
       setError(result.error);
       return;
     }
 
-    history.push('/login');
+    localStorage.setItem('token', result.token);
+    localStorage.setItem('email', result.email);
+    //history.push('/');
     window.location.reload();
   };
+
+  const registerSubmit = async values => {
+    const params = {
+      email: values.email,
+      password: values.password,
+    };
+    const result = await fetchRegister(params);
+
+    if (result.error) {
+      setError(result.error);
+      return;
+    }
+
+    await loginSubmit(params);
+  }
 
   return (
     <div>
       {error !== '' && error}
-
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form>
         <input
           name="email"
-          type="email"
           ref={register({
             required: 'Required',
             pattern: {
@@ -52,10 +65,10 @@ const RegisterPage = () => {
         />
         {errors.password && errors.password.message}
 
-        <button type="submit">Register</button>
+        <button onClick={handleSubmit(loginSubmit)}>Login</button>
+        <button onClick={handleSubmit(registerSubmit)}>Register</button>
       </form>
-
     </div>
   );
 };
-export default RegisterPage;
+export default AuthPage;
