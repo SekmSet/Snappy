@@ -7,7 +7,7 @@ import {getCurentUser, isAuthenticated} from '../../service/auth/login';
 
 const Header = () => {
 
-  const user = getCurentUser();
+  const email = getCurentUser();
   const isAuth = isAuthenticated();
 
   return (
@@ -19,28 +19,15 @@ const Header = () => {
             <Link className="nav-link" to="/">Home</Link><span className="sr-only">(current)</span>
           </li>
 
-          {!isAuth && (
-            <li className="nav-item">
-              <Link className="nav-link" to="/login">Login</Link>
-            </li>
-          )}
-
-          {!isAuth && (
-            <li className="nav-item">
-              <Link className="nav-link" to="/register">Register</Link>
-            </li>
-          )}
-
           {isAuth && (
             <li className="nav-item">
               <Link className="nav-link" to="/logout">Logout</Link>
             </li>
           )}
 
-
         </ul>
         {isAuth && (
-          <span className="nav-link disabled" >{user.login}</span>
+          <span className="nav-link disabled" >{email}</span>
         )}
       </div>
     </nav>

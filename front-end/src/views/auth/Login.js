@@ -11,13 +11,15 @@ const LoginPage = () => {
   const history = useHistory();
 
   const onSubmit = async values => {
-    const result = await fetchLogin(values.login, values.password);
+    const result = await fetchLogin(values.email, values.password);
+
     if (result.error) {
       setError(result.error);
       return;
     }
 
     localStorage.setItem('token', result.token);
+    localStorage.setItem('email', result.email);
     history.push('/');
     window.location.reload();
   };
@@ -27,12 +29,12 @@ const LoginPage = () => {
       {error !== '' && error}
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
-          name="login"
+          name="email"
           ref={register({
             required: 'Required',
           })}
         />
-        {errors.login && errors.login.message}
+        {errors.email && errors.email.message}
 
         <input
           name="password"

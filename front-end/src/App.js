@@ -2,42 +2,50 @@ import React from 'react';
 import {
     BrowserRouter as Router,
     Switch,
-    Route,
+    Route, Link,
 } from 'react-router-dom';
 
 import './App.css';
 
 import Header from './components/parts/header';
 import Footer from './components/parts/footer';
-import LoginPage from './views/auth/Login';
+import HomePage from './views/HomePage';
 import RegisterPage from './views/auth/Register';
 import LogoutPage from './views/auth/Logout';
+import AuthPage from './views/auth/auth';
+import {isAuthenticated} from "./service/auth/login";
 
 function App () {
+    const isAuth = isAuthenticated();
+
     return (
-        <Router>
-            <Header />
-            <div className="container">
-                <div className="row">
-                    <div className="col-md-12">
-                        <Switch>
-                            <Route path="/login">
-                                <LoginPage />
-                            </Route>
+        <div>
+            {!isAuth && (
+                <AuthPage />
+            )}
 
-                            <Route path="/register">
-                                <RegisterPage />
-                            </Route>
-
-                            <Route path="/logout">
-                                <LogoutPage />
-                            </Route>
-                        </Switch>
+            {isAuth && (
+                <Router>
+                    <Header />
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-md-12">
+                                <Switch>
+                                    <Route exact path="/">
+                                        <HomePage />
+                                    </Route>
+                                    <Route path="/logout">
+                                        <LogoutPage />
+                                    </Route>
+                                </Switch>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <Footer />
-        </Router>
+                    <Footer />
+                </Router>
+            )}
+
+        </div>
     );
 }
 
