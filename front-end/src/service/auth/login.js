@@ -1,9 +1,6 @@
 const axios = require('axios');
 const token = localStorage.getItem('token');
 const email = localStorage.getItem('email');
-// if (token) {
-//   headers.append('Authorization', 'Basic ' + token);
-// }
 
 export async function fetchLogin (email, password) {
   try {

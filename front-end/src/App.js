@@ -2,7 +2,7 @@ import React from 'react';
 import {
     BrowserRouter as Router,
     Switch,
-    Route, Link,
+    Route,
 } from 'react-router-dom';
 
 import './App.css';
@@ -10,9 +10,9 @@ import './App.css';
 import Header from './components/parts/header';
 import Footer from './components/parts/footer';
 import HomePage from './views/HomePage';
-import RegisterPage from './views/auth/Register';
 import LogoutPage from './views/auth/Logout';
 import AuthPage from './views/auth/auth';
+import SnapPage from './views/snap/index';
 import {isAuthenticated} from "./service/auth/login";
 
 function App () {
@@ -36,6 +36,9 @@ function App () {
                                     </Route>
                                     <Route path="/logout">
                                         <LogoutPage />
+                                    </Route>
+                                    <Route path="/snap">
+                                        <SnapPage />
                                     </Route>
                                 </Switch>
                             </div>

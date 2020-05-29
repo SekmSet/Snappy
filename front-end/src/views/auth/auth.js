@@ -1,15 +1,11 @@
 import React, {useState} from 'react';
 import { useForm } from 'react-hook-form';
-import { useHistory } from 'react-router-dom';
-
 import {fetchLogin} from '../../service/auth/login';
 import {fetchRegister} from '../../service/auth/register';
 
 const AuthPage = () => {
   const [error, setError] = useState('');
   const { handleSubmit, register, errors } = useForm();
-
-  const history = useHistory();
 
   const loginSubmit = async values => {
     const result = await fetchLogin(values.email, values.password);
@@ -21,7 +17,6 @@ const AuthPage = () => {
 
     localStorage.setItem('token', result.token);
     localStorage.setItem('email', result.email);
-    //history.push('/');
     window.location.reload();
   };
 
