@@ -38,7 +38,7 @@ export default function App() {
       <View style={styles.topContainer}>
         <View>
           <TextInput style={styles.input} placeholder='EMAIL' placeholderStyle={{ color: '#FFF' }} onChangeText={handleEmailChange} />
-          <TextInput style={styles.input} placeholder='PASSWORD' onChangeText={handlePasswordChange} />
+          <TextInput secureTextEntry={true} style={styles.input} placeholder='PASSWORD' onChangeText={handlePasswordChange} />
           <Text style={styles.agree}> By logging in you accepts the terms of nudes</Text>
         </View>
 
