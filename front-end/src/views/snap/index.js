@@ -1,16 +1,22 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useForm} from "react-hook-form";
 import Camera from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';
-import {sendSnap} from "../../service/snap";
+import {fetchEmails, sendSnap} from "../../service/snap";
 
 export const Snap = () => {
     const [photo, setPhoto] = useState('');
+    const [emails, setEmails] = useState([]);
     const { handleSubmit, register } = useForm();
     const durations = [ ...Array(10).keys() ].map( i => i+1);
 
+    useEffect(() =>{
+        fetchEmails(setEmails);
+    }, []);
+
     const onSubmit = async (values) => {
         await sendSnap({photo, duration: values.duration, email: values.email});
+        setPhoto('');
     };
 
     const handleTakePhoto = (dataUri) => {
@@ -19,10 +25,19 @@ export const Snap = () => {
 
     return (
         <div className="App">
-            <Camera
-                onTakePhoto={(dataUri) => handleTakePhoto(dataUri)}
-            />
-            {photo && <img src={photo} alt="camera"/>}
+
+            {!photo &&  <Camera onTakePhoto={(dataUri) => handleTakePhoto(dataUri)} /> }
+
+            {photo && (
+                <div>
+                    <img src={photo} alt="camera"/>
+                    <button onClick={() => handleTakePhoto('')}>Reset</button>
+                </div>
+            )}
+
+
+
+            {photo &&
             <form onSubmit={handleSubmit(onSubmit)}>
                 <select
                     name="email"
@@ -30,7 +45,10 @@ export const Snap = () => {
                         required: 'Required',
                     })}
                 >
-                    <option value="priscilla.joly@epitech.eu">priscilla.joly@epitech.eu</option>
+                    {emails.map((email) => (
+                        <option key={email.email} value={email.email} > {email.email}</option>
+                    ))}
+
                 </select>
 
                 <select
@@ -48,6 +66,9 @@ export const Snap = () => {
 
                 <button type="submit">Send</button>
             </form>
+            }
+
+
         </div>
     );
 }
