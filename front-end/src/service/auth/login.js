@@ -1,13 +1,10 @@
-const axios = require('axios');
+import axios from "../axios";
 const token = localStorage.getItem('token');
 const email = localStorage.getItem('email');
-// if (token) {
-//   headers.append('Authorization', 'Basic ' + token);
-// }
 
 export async function fetchLogin (email, password) {
   try {
-    const reponse = await axios.post('http://snapi.epitech.eu/connection', {email, password});
+    const reponse = await axios.post('connection', {email, password});
 
     return reponse.data.data;
   } catch (e){
