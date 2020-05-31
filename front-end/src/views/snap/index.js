@@ -4,7 +4,7 @@ import Camera from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';
 import {fetchEmails, sendSnap} from "../../service/snap";
 
-export const Snap = () => {
+const Snap = () => {
     const [photo, setPhoto] = useState('');
     const [emails, setEmails] = useState([]);
     const { handleSubmit, register } = useForm();

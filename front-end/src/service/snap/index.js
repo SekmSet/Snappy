@@ -23,6 +23,35 @@ export async function sendSnap({photo, duration, email}) {
     })
 }
 
+export async function getSnaps(setSnaps){
+    const allSnaps = await axios.get('snaps', {
+        headers: {
+            'token': token,
+        }
+    })
+    console.log(allSnaps);
+    setSnaps(allSnaps.data.data)
+}
+
+export async function readSnap(snapId, setSnap){
+    const readSnap = await axios.get(`snap/${snapId}`, {
+        responseType: 'arraybuffer'
+    })
+    const convert = Buffer.from(readSnap.data, 'binary').toString('base64')
+    const imageBase64 = `data:image/png;base64,${convert}`;
+    setSnap(imageBase64)
+
+    return imageBase64;
+}
+
+export async function seenSnap(idSnap,setSnap) {
+    await axios.post('seen', {
+        id: idSnap,
+    })
+
+    setSnap('');
+}
+
 export async function fetchEmails(setEmail) {
     const response = await axios.get('all', {
         headers: {
@@ -32,3 +61,4 @@ export async function fetchEmails(setEmail) {
 
     setEmail(response.data.data);
 }
+

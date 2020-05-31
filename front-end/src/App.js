@@ -13,6 +13,7 @@ import HomePage from './views/HomePage';
 import LogoutPage from './views/auth/Logout';
 import AuthPage from './views/auth/auth';
 import SnapPage from './views/snap/index';
+import ShowSnaps from './views/snap/showAll';
 import {isAuthenticated} from "./service/auth/login";
 
 function App () {
@@ -40,6 +41,9 @@ function App () {
                                     <Route path="/snap">
                                         <SnapPage />
                                     </Route>
+                                    <Route path="/snaps">
+                                        <ShowSnaps />
+                                    </Route>
                                 </Switch>
                             </div>
                         </div>
@@ -47,7 +51,6 @@ function App () {
                     <Footer />
                 </Router>
             )}
-
         </div>
     );
 }
