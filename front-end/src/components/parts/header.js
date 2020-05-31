@@ -20,10 +20,13 @@ const Header = () => {
             <Link className="nav-link" to="/snap">snap</Link>
           </li>
           <li className="nav-item">
+            <Link className="nav-link" to="/snaps">Messagerie</Link>
+          </li>
+          <li className="nav-item">
             <Link className="nav-link" to="/logout">Logout</Link>
           </li>
         </ul>
-          <span className="nav-link disabled" >{email}</span>
+        <span className="nav-link disabled" >{email}</span>
       </div>
     </nav>
   );

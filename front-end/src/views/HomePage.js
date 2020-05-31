@@ -4,7 +4,6 @@ const HomePage = () => {
   return (
     <div>
       <h1>Snapy</h1>
-
     </div>
   );
 };

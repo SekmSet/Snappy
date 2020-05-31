@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="text-muted">
       <div className="container">
-        <p> © My App  with React, NodeJS and Mongo By Priscilla !</p>
+        <p> © Snappy app By Les Pains Durs !</p>
       </div>
     </footer>
   );
