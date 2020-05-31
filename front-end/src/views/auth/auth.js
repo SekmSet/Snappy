@@ -33,7 +33,7 @@ const AuthPage = () => {
     }
 
     await loginSubmit(params);
-  }
+  };
 
   return (
     <div>

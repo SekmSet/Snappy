@@ -1,4 +1,4 @@
-import axios from "../axios";
+import axios from '../axios';
 const token = localStorage.getItem('token');
 const email = localStorage.getItem('email');
 
@@ -7,13 +7,13 @@ export async function fetchLogin (email, password) {
     const reponse = await axios.post('connection', {email, password});
 
     return reponse.data.data;
-  } catch (e){
+  } catch (e) {
     return {error: e.response.data.data};
   }
 }
 
 export function isAuthenticated () {
-  return (token)
+  return (token);
 }
 
 export function getCurentUser () {

@@ -26,7 +26,7 @@ const Header = () => {
             <Link className="nav-link" to="/logout">Logout</Link>
           </li>
         </ul>
-          <span className="nav-link disabled" >{email}</span>
+        <span className="nav-link disabled" >{email}</span>
       </div>
     </nav>
   );
