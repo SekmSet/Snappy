@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-export const register =  (email,password)=>{
-    return axios.post('http://snapi.epitech.eu/inscription', {email, password})
+export const register = async (email, password) => {
+    return await axios.post('http://snapi.epitech.eu/inscription', { email, password })
 }
 
-export const login =  (email,password)=>{
-    return axios.post('http://snapi.epitech.eu/connection', {email, password})
+export const login = async (email, password) => {
+    return await axios.post('http://snapi.epitech.eu/connection', { email, password })
 }
 

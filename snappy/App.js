@@ -15,7 +15,7 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Auth">
-        <Stack.Screen name="Auth" component={Auth} />
+        <Stack.Screen name="Auth" component={Home} />
         <Stack.Screen name="Home" component={Home} />
       </Stack.Navigator>
     </NavigationContainer >

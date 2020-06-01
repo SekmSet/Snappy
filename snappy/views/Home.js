@@ -1,54 +1,139 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, SafeAreaView, TextInput, Label } from 'react-native';
-// import { FormLabel } from 'react-native-elements';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, SafeAreaView, Image } from 'react-native';
 import { Button } from 'react-native-elements';
-import { register, login } from "../services/auth"
-import { storeData, getData } from "../services/localStorage";
+// import { users } from "../services/users";
+// import { storeData, getData } from "../services/localStorage";
 
-export default function Home() {
-    const [email, setEmail] = useState(null);
-    const [password, setPassword] = useState(null);
+export default function Home(props) {
+    // const [user, setUser] = useState(null);
+    // const userss = users();
+    // useEffect(() => {
+    //     // let link = "http://snapi.epitech.eu/all";
+    //     fetch(users())
+    //         .then(response => response.json())
+    //         .then(json => setUser(json));
+    // }, [props]);
+    // console.log(user)
+    // console.log(props);
+    // const handleUsers = (event) => {
+    //     users(token).then(data => console.log(data)).catch(err => console.error(err));
+    // }
 
-    const handleRegister = (event) => {
-        register(email, password).then(data => console.log(data)).catch(err => console.error(err));
-    }
-    const handleLogin = (event) => {
-
-        login(email, password)
-            .then(data => storeData(data.data.token)
-                .then(res => console.log(res))
-                .catch(e => console.log(e)))
-            .catch(err => console.error(err));
-    }
-    const handleEmailChange = (value) => {
-        setEmail(value);
-        console.log("mail " + email)
-    }
-    const handlePasswordChange = (value) => {
-        setPassword(value);
-        console.log("pass " + password)
-    }
     return (
         <SafeAreaView style={styles.container}>
-            <View style={styles.bar}></View>
+
             <View style={styles.header}>
-                <Text style={styles.title}>SNAPPY</Text>
+                <Image
+                    style={styles.logo}
+                    source={require('../assets/lv.jpg')}
+                />
+                <Text style={styles.name}>Monzzzz</Text>
+                <View style={styles.setting}>
+                    <View style={styles.settingContainer}>
+                        <Image
+                            style={styles.settingIcon}
+                            source={require('../assets/setting.png')}
+                        />
+                    </View>
+                    <View style={styles.dialogContainer}>
+                        <Image
+                            style={styles.newTchat}
+                            source={require('../assets/dialog.png')}
+                        />
+                    </View>
+                </View>
             </View>
 
-            <View style={styles.topContainer}>
-                <View>
-                    <TextInput style={styles.input} placeholder='EMAIL' placeholderStyle={{ color: '#FFF' }} onChangeText={handleEmailChange} />
-                    <TextInput secureTextEntry={true} style={styles.input} placeholder='PASSWORD' onChangeText={handlePasswordChange} />
-                    <Text style={styles.agree}> By logging in you accepts the terms of nudes</Text>
+            <View style={styles.allDialog}>
+                <View style={styles.oneDialog}>
+
+                    <Image
+                        style={styles.logo}
+                        source={require('../assets/lv.jpg')}
+                    />
+                    <View style={styles.principal}>
+                        <Text style={styles.friend}>Zebi</Text>
+
+                        <View style={styles.reception}>
+                            <Image
+                                style={styles.triangle}
+                                source={require('../assets/triangle.png')}
+                            />
+                            <Text style={styles.message}>Reçu il y a </Text>
+                        </View>
+                    </View>
                 </View>
 
-                <View style={styles.buttons}>
-                    <Button style={styles.register} title="REGISTER" buttonStyle={{ backgroundColor: '#ffd800', borderRadius: 15, padding: 10 }} titleStyle={{ color: '#000', fontSize: 14 }} onPress={handleRegister} />
-                    <Button style={styles.login} title="LOGIN" buttonStyle={{ backgroundColor: '#151515', borderRadius: 15, padding: 10 }} titleStyle={{ color: '#FFF', fontSize: 14 }} onPress={handleLogin} />
+                <View style={styles.oneDialog}>
+                    <Image
+                        style={styles.logo}
+                        source={require('../assets/lv.jpg')}
+                    />
+                    <Text style={styles.friend}>Zebi</Text>
                 </View>
 
+                <View style={styles.oneDialog}>
+                    <Image
+                        style={styles.logo}
+                        source={require('../assets/lv.jpg')}
+                    />
+                    <Text style={styles.friend}>Zebi</Text>
+                </View>
+
+                <View style={styles.oneDialog}>
+
+                    <Image
+                        style={styles.logo}
+                        source={require('../assets/lv.jpg')}
+                    />
+                    <Text style={styles.friend}>Zebi</Text>
+
+                </View>
+                <View style={styles.oneDialog}>
+
+                    <Image
+                        style={styles.logo}
+                        source={require('../assets/lv.jpg')}
+                    />
+                    <Text style={styles.friend}>Zebi</Text>
+
+                </View>
+                <View style={styles.oneDialog}>
+
+                    <Image
+                        style={styles.logo}
+                        source={require('../assets/lv.jpg')}
+                    />
+                    <Text style={styles.friend}>Zebi</Text>
+
+                </View>
+                <View style={styles.oneDialog}>
+
+                    <Image
+                        style={styles.logo}
+                        source={require('../assets/lv.jpg')}
+                    />
+                    <Text style={styles.friend}>Zebi</Text>
+
+                </View>
+                <View style={styles.oneDialog}>
+
+                    <Image
+                        style={styles.logo}
+                        source={require('../assets/lv.jpg')}
+                    />
+                    <Text style={styles.friend}>Zebi</Text>
+
+                </View>
             </View>
         </SafeAreaView>
+        // <View>
+        //     {user === null
+        //         ? false
+        //         : user.data.map(users => { users.email })}
+        // </View>
+
+
     );
 }
 
@@ -57,66 +142,97 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#555',
         alignItems: 'center',
-        justifyContent: 'space-around',
+        justifyContent: 'center'
     },
     header: {
-        color: '#f7f7f7',
         backgroundColor: '#353535',
-        width: 100 + 'vw',
-        textAlign: 'center',
-        position: 'absolute',
+        width: '100vw',
+        position: 'fixed',
         top: 0,
-    },
-    title: {
-        marginTop: 100,
-        marginBottom: 100,
-        color: '#bdbdbd',
-        fontWeight: 'bold',
-        fontSize: '14vw',
-        width: '100%',
-    },
-    topContainer: {
-        marginTop: '50%',
-        alignItems: 'center',
-    },
-    input: {
-        backgroundColor: '#555555',
-        color: '#121212',
-        marginTop: 25,
-        padding: 15,
-        width: '100%',
-        height: 40,
-        borderRadius: 20,
-    },
-    buttons: {
-        position: 'relative',
-        flex: 1,
-        width: '100%',
-        flexDirection: 'row',
-        marginTop: 50,
-        justifyContent: 'center',
-    },
-    register: {
-        width: '25vw',
-        marginRight: '20px',
-    },
-    login: {
-        width: '25vw',
-    },
-    agree: {
-        color: '#808080',
-        marginTop: 15,
-        fontSize: 10,
-        textAlign: 'center',
-    },
-    bar: {
         display: 'flex',
-        width: '12px',
-        height: '100%',
-        backgroundColor: '#ffd800',
+        flexDirection: 'row',
+        zIndex: 1000
+    },
+    logo: {
+        width: '14vw',
+        height: '14vw',
+        borderRadius: '50%',
+        margin: '30px'
+    },
+    name: {
+        color: '#ffc900',
+        marginTop: '38px',
+        fontSize: '8vw',
+        fontWeight: 'bold',
+        width: '50vw',
+        marginLeft: '7vw'
+    },
+    settingContainer: {
         position: 'absolute',
-        zIndex: 1000,
-        left: 0,
-        top: 0,
+        top: '1.5vh',
+        left: '100%',
+        width: '10vw',
+        height: '10vw',
+        borderRadius: '50%',
+        backgroundColor: 'white',
+        padding: '6px',
+        justifyContent: 'center'
+    },
+    settingIcon: {
+        width: '7vw',
+        height: '7vw',
+    },
+    dialogContainer: {
+        position: 'absolute',
+        top: '10vh',
+        left: '100%',
+        width: '8vw',
+        height: '8vw',
+        borderRadius: '50%',
+        backgroundColor: '#ffc900',
+        justifyContent: 'center',
+        padding: '3px'
+    },
+    newTchat: {
+        width: '6.5vw',
+        height: '6.5vw',
+    },
+    allDialog: {
+        overflow: scroll,
+        marginTop: '30vw'
+    },
+    oneDialog: {
+        backgroundColor: '#909090',
+        width: '100vw',
+        display: 'flex',
+        flexDirection: 'row',
+        margin: '2px',
+    },
+    friend: {
+        color: '#353535',
+        marginTop: '25px',
+        fontSize: '6vw',
+        fontWeight: 'bold',
+        width: '50vw',
+        marginLeft: '3vw'
+    },
+    reception: {
+        display: 'flex',
+        flexDirection: 'row',
+        marginTop: '15px',
+    },
+    triangle: {
+        marginTop: '1vh',
+        marginLeft: '4vw',
+        width: '3vw',
+        height: '3vw',
+        transform: [{ rotate: "90deg" }]
+    },
+    message: {
+        marginTop: '1vh',
+        marginLeft: '25px',
+        fontStyle: 'italic',
+        color: '#ffc900',
     }
+
 });
