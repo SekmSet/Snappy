@@ -54,9 +54,57 @@ nav.navbar-container {
     }
   }
 }
+
+.form-container {
+  width: 70%;
+  height: 50%;
+  left: 15%;
+  top: 25%;
+  position: absolute;
+  display: flex;
+  .left-container {
+    position: relative;
+    background-color: $conDarkGreen;
+    color: $conLightOrange;
+    width: 60%;
+  }
+  .right-container {
+    position: relative;
+    background-color: $conOrange;
+    width: 40%;
+    form.form {
+      padding-top: 30%;
+      padding-left: 20%;
+      padding-right: 20%;
+      input {
+        color: black !important;
+      }
+      .MuiInput-underline:before {
+        border-bottom-color: $conDarkGreen !important;
+      }
+      // width: 80%;
+    }
+    .text-fields {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      * {
+        color: $conDarkGreen !important;
+      }
+    }
+    .email-input {
+      margin-bottom: 10%;
+    }
+    .validation {
+      margin-top: 7%;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}
+
 video {
   border-radius: 30px;
-  
 }
 footer {
   width: 100%;

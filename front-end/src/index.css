@@ -62,6 +62,62 @@ nav.navbar-container .links a {
   letter-spacing: 0.05em;
 }
 
+.form-container {
+  width: 70%;
+  height: 50%;
+  left: 15%;
+  top: 25%;
+  position: absolute;
+  display: flex;
+}
+
+.form-container .left-container {
+  position: relative;
+  background-color: #37382e;
+  color: #f7d244;
+  width: 60%;
+}
+
+.form-container .right-container {
+  position: relative;
+  background-color: #f09e02;
+  width: 40%;
+}
+
+.form-container .right-container form.form {
+  padding-top: 30%;
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
+.form-container .right-container form.form input {
+  color: black !important;
+}
+
+.form-container .right-container form.form .MuiInput-underline:before {
+  border-bottom-color: #37382e !important;
+}
+
+.form-container .right-container .text-fields {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container .right-container .text-fields * {
+  color: #37382e !important;
+}
+
+.form-container .right-container .email-input {
+  margin-bottom: 10%;
+}
+
+.form-container .right-container .validation {
+  margin-top: 7%;
+  display: flex;
+  justify-content: flex-end;
+}
+
 video {
   border-radius: 30px;
 }
