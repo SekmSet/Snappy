@@ -1,26 +1,22 @@
-import React from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from 'react-router-dom';
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import './App.css';
+import "./App.css";
 
-import Header from './components/parts/header';
-import Footer from './components/parts/footer';
-import HomePage from './views/HomePage';
-import LogoutPage from './views/auth/Logout';
-import SnapPage from './views/snap/index';
-import ShowSnaps from './views/snap/showAll';
+import Header from "./components/parts/header";
+import Footer from "./components/parts/footer";
+import HomePage from "./views/HomePage";
+import LogoutPage from "./views/auth/Logout";
+import AuthPage from "./views/auth/auth";
+import SnapPage from "./views/snap/index";
+import ShowSnaps from "./views/snap/showAll";
 import {UserConsumer, UserProvider} from './context/context';
-import AuthPage from './views/auth/auth';
 
 function App () {
   //const isAuth = isAuthenticated();
 
   return (
-    <div>
+    <div className="app-container">
       <UserProvider>
         <UserConsumer>
           {({ isAuth }) =>

@@ -1,32 +1,35 @@
-import React, {useContext} from 'react';
-import {
-  Link
-} from 'react-router-dom';
-import UserContext from '../../context/context';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
-  const { email } = useContext(UserContext);
-
-
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a className="navbar-brand" href="/">MyBlog</a>
-      <div className="collapse navbar-collapse show" >
-        <ul className="navbar-nav mr-auto">
-          <li className="nav-item">
-            <Link className="nav-link" to="/">Home</Link><span className="sr-only">(current)</span>
+    <nav className="navbar-container">
+      <a className="navbar-logo" href="/">
+        S.
+      </a>
+      <div className="links-container">
+        <ul className="links">
+          <li className="nav-link-container">
+            <Link className="nav-link" to="/">
+              Home
+            </Link>
           </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/snap">snap</Link>
+          <li className="nav-link-container">
+            <Link className="nav-link" to="/snap">
+              Snap
+            </Link>
           </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/snaps">Messagerie</Link>
+          <li className="nav-link-container">
+            <Link className="nav-link" to="/snaps">
+              Messagerie
+            </Link>
           </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/logout">Logout</Link>
+          <li className="nav-link-container">
+            <Link className="nav-link" to="/logout">
+              Logout
+            </Link>
           </li>
         </ul>
-        <span className="nav-link disabled" >{email}</span>
       </div>
     </nav>
   );

@@ -1,0 +1,72 @@
+@import "colors";
+@import url("https://fonts.googleapis.com/css2?family=Piedra&family=Roboto:ital,wght@0,300;0,700;0,900;1,100;1,300;1,400&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  background-color: $darkModeBlack;
+  color: $darkGrey;
+}
+a {
+  color: $darkGrey;
+}
+
+.app-container {
+  width: 100vw;
+  height: 100vh;
+}
+
+nav.navbar-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: 10%;
+  font-size: medium;
+
+  a.navbar-logo {
+    width: 50%;
+    font-size: 30px;
+    padding-left: 3%;
+    color: $lightGrey;
+    margin-top: 2%;
+    font-family: "Piedra", sans-serif;
+  }
+  .links-container {
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2%;
+  }
+  .links {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    a {
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+  }
+}
+video {
+  border-radius: 30px;
+  
+}
+footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  .logged-as {
+    font-style: italic;
+    font-weight: 100;
+    letter-spacing: 0.05em;
+  }
+}
