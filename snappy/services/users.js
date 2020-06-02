@@ -1,5 +1,5 @@
 import axios from './axios';
 
 export const users = () => {
-    return axios.get('http://snapi.epitech.eu/all');
-}
+  return axios.get('http://snapi.epitech.eu/all');
+};

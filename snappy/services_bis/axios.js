@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {getData} from '../services/localStorage';
 
 const instance = axios.create({
   baseURL: 'http://snapi.epitech.eu/',
@@ -6,8 +7,8 @@ const instance = axios.create({
 });
 
 // Set the AUTH token for any request
-instance.interceptors.request.use(config => {
-  const token = localStorage.getItem('token');
+instance.interceptors.request.use(async config => {
+  const token = await getData('token');
   if (token) {
     config.headers.token = token;
   }

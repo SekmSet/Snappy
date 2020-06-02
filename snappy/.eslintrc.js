@@ -1,20 +1,27 @@
 module.exports = {
-  'root': true,
   'env': {
-    'commonjs': true,
+    'browser': true,
     'es6': true,
-    'node': true,
-    'browser': true
+    'node': true
   },
-  'extends': ['eslint:recommended'],
+  'extends': [
+    'eslint:recommended',
+    'plugin:react/recommended'
+  ],
   'globals': {
     'Atomics': 'readonly',
     'SharedArrayBuffer': 'readonly'
   },
   'parserOptions': {
+    'ecmaFeatures': {
+      'jsx': true
+    },
     'ecmaVersion': 11,
     'sourceType': 'module'
   },
+  'plugins': [
+    'react'
+  ],
   'rules': {
     semi: ['error', 'always'],
     'brace-style': ['error', '1tbs', { 'allowSingleLine': true }],
@@ -41,5 +48,6 @@ module.exports = {
     'prefer-const': ['error', {'destructuring': 'all'}],
     'no-unused-vars': ['error', { 'vars': 'all', 'args': 'none', 'ignoreRestSiblings': true }],
     'no-var': 'error',
+    'react/prop-types': 0
   }
 };

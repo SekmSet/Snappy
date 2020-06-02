@@ -1,12 +1,12 @@
 import axios from './axios';
 
-export async function FetchAllUser(setUsers) {
-    try {
-        const resultUser = await axios.get('all');
-        setUsers(resultUser.data.data);
-        console.log(resultUser.data.data);
-        return resultUser;
-    } catch (exception) {
-        return exception;
-    }
-}
+export const fetchAllUser = async (setUsers) =>{
+  try {
+    const resultUser = await axios.get('all');
+    setUsers(resultUser.data.data);
+    return resultUser;
+  } catch (exception) {
+    console.log(exception);
+    return exception;
+  }
+};
