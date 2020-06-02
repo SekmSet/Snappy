@@ -1,142 +1,66 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, SafeAreaView, Image } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, Image, FlatList } from 'react-native';
 import { Button } from 'react-native-elements';
-// import { users } from "../services/users";
-// import { storeData, getData } from "../services/localStorage";
+import { FetchAllUser } from '../services/allusers';
+import { vw, vh, vmin, vmax } from 'react-native-expo-viewport-units';
 
-export default function Home(props) {
-    // const [user, setUser] = useState(null);
-    // const userss = users();
-    // useEffect(() => {
-    //     // let link = "http://snapi.epitech.eu/all";
-    //     fetch(users())
-    //         .then(response => response.json())
-    //         .then(json => setUser(json));
-    // }, [props]);
-    // console.log(user)
-    // console.log(props);
-    // const handleUsers = (event) => {
-    //     users(token).then(data => console.log(data)).catch(err => console.error(err));
-    // }
+
+export default function Auth({ navigation }) {
+    const [users, setUsers] = useState([]);
+
+    useEffect(() => {
+        FetchAllUser(setUsers);
+    }, []);
 
     return (
-        <SafeAreaView style={styles.container}>
-
-            <View style={styles.header}>
-                <Image
-                    style={styles.logo}
-                    source={require('../assets/lv.jpg')}
-                />
-                <Text style={styles.name}>Monzzzz</Text>
-                <View style={styles.setting}>
-                    <View style={styles.settingContainer}>
-                        <Image
-                            style={styles.settingIcon}
-                            source={require('../assets/setting.png')}
-                        />
-                    </View>
-                    <View style={styles.dialogContainer}>
-                        <Image
-                            style={styles.newTchat}
-                            source={require('../assets/dialog.png')}
-                        />
-                    </View>
-                </View>
-            </View>
-
-            <View style={styles.allDialog}>
-                <View style={styles.oneDialog}>
-
+        <View style={styles.principal}>
+            <Button
+                title="Take a Snap"
+                onPress={() => navigation.navigate('Snap')}
+            />
+            <SafeAreaView style={styles.container}>
+                <View style={styles.header}>
                     <Image
                         style={styles.logo}
                         source={require('../assets/lv.jpg')}
                     />
-                    <View style={styles.principal}>
-                        <Text style={styles.friend}>Zebi</Text>
-
-                        <View style={styles.reception}>
+                    <Text style={styles.name}>Snappy</Text>
+                    <View style={styles.setting}>
+                        <View style={styles.settingContainer}>
                             <Image
-                                style={styles.triangle}
-                                source={require('../assets/triangle.png')}
+                                style={styles.settingIcon}
+                                source={require('../assets/setting.png')}
                             />
-                            <Text style={styles.message}>Reçu il y a </Text>
+                        </View>
+                        <View style={styles.dialogContainer}>
+                            <Image
+                                style={styles.newTchat}
+                                source={require('../assets/dialog.png')}
+                            />
                         </View>
                     </View>
                 </View>
-
-                <View style={styles.oneDialog}>
-                    <Image
-                        style={styles.logo}
-                        source={require('../assets/lv.jpg')}
-                    />
-                    <Text style={styles.friend}>Zebi</Text>
+                <View style={styles.allDialog}>
+                    <View style={styles.oneDialog}>
+                        <View style={styles.principal}>
+                            <FlatList
+                                data={users}
+                                renderItem={({ item }) => <Text style={styles.friend}>{item.email}</Text>}
+                            />
+                            <View style={styles.reception}>
+                                <Image
+                                    style={styles.triangle}
+                                    source={require('../assets/triangle.png')}
+                                />
+                                <Text style={styles.message}>Reçu il y a </Text>
+                            </View>
+                        </View>
+                    </View>
                 </View>
-
-                <View style={styles.oneDialog}>
-                    <Image
-                        style={styles.logo}
-                        source={require('../assets/lv.jpg')}
-                    />
-                    <Text style={styles.friend}>Zebi</Text>
-                </View>
-
-                <View style={styles.oneDialog}>
-
-                    <Image
-                        style={styles.logo}
-                        source={require('../assets/lv.jpg')}
-                    />
-                    <Text style={styles.friend}>Zebi</Text>
-
-                </View>
-                <View style={styles.oneDialog}>
-
-                    <Image
-                        style={styles.logo}
-                        source={require('../assets/lv.jpg')}
-                    />
-                    <Text style={styles.friend}>Zebi</Text>
-
-                </View>
-                <View style={styles.oneDialog}>
-
-                    <Image
-                        style={styles.logo}
-                        source={require('../assets/lv.jpg')}
-                    />
-                    <Text style={styles.friend}>Zebi</Text>
-
-                </View>
-                <View style={styles.oneDialog}>
-
-                    <Image
-                        style={styles.logo}
-                        source={require('../assets/lv.jpg')}
-                    />
-                    <Text style={styles.friend}>Zebi</Text>
-
-                </View>
-                <View style={styles.oneDialog}>
-
-                    <Image
-                        style={styles.logo}
-                        source={require('../assets/lv.jpg')}
-                    />
-                    <Text style={styles.friend}>Zebi</Text>
-
-                </View>
-            </View>
-        </SafeAreaView>
-        // <View>
-        //     {user === null
-        //         ? false
-        //         : user.data.map(users => { users.email })}
-        // </View>
-
-
+            </SafeAreaView>
+        </View>
     );
 }
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -146,93 +70,95 @@ const styles = StyleSheet.create({
     },
     header: {
         backgroundColor: '#353535',
-        width: '100vw',
-        position: 'fixed',
+        width: vw(100),
+        // position: 'fixed',
         top: 0,
         display: 'flex',
         flexDirection: 'row',
         zIndex: 1000
     },
     logo: {
-        width: '14vw',
-        height: '14vw',
-        borderRadius: '50%',
-        margin: '30px'
+        width: vw(14),
+        height: vw(14),
+        borderRadius: 50,
+        margin: 30
     },
     name: {
         color: '#ffc900',
-        marginTop: '38px',
-        fontSize: '8vw',
+        marginTop: 38,
+        fontSize: vw(8),
         fontWeight: 'bold',
-        width: '50vw',
-        marginLeft: '7vw'
+        width: vw(50),
+        marginLeft: vw(7)
     },
     settingContainer: {
-        position: 'absolute',
-        top: '1.5vh',
+        // position: 'absolute',
+        top: vh(1.5),
         left: '100%',
-        width: '10vw',
-        height: '10vw',
-        borderRadius: '50%',
+        width: vw(10),
+        height: vw(10),
+        borderRadius: 50,
         backgroundColor: 'white',
-        padding: '6px',
+        padding: 6,
         justifyContent: 'center'
     },
     settingIcon: {
-        width: '7vw',
-        height: '7vw',
+        width: vw(7),
+        height: vw(7),
     },
     dialogContainer: {
-        position: 'absolute',
-        top: '10vh',
+        // position: 'absolute',
+        top: vh(10),
         left: '100%',
-        width: '8vw',
-        height: '8vw',
-        borderRadius: '50%',
+        width: vw(8),
+        height: vw(8),
+        borderRadius: 50,
         backgroundColor: '#ffc900',
         justifyContent: 'center',
-        padding: '3px'
+        padding: 3
     },
     newTchat: {
-        width: '6.5vw',
-        height: '6.5vw',
+        width: vw(6.5),
+        height: vw(6.5),
     },
     allDialog: {
-        overflow: scroll,
-        marginTop: '30vw'
+        // overflow: scroll,
+        marginTop: vw(30)
     },
     oneDialog: {
         backgroundColor: '#909090',
-        width: '100vw',
+        width: vw(100),
         display: 'flex',
         flexDirection: 'row',
-        margin: '2px',
+        margin: 2,
     },
     friend: {
         color: '#353535',
-        marginTop: '25px',
-        fontSize: '6vw',
+        marginTop: 25,
+        fontSize: vw(6),
         fontWeight: 'bold',
-        width: '50vw',
-        marginLeft: '3vw'
+        width: vw(50),
+        marginLeft: vw(3)
     },
     reception: {
         display: 'flex',
         flexDirection: 'row',
-        marginTop: '15px',
+        marginTop: 15,
     },
     triangle: {
-        marginTop: '1vh',
-        marginLeft: '4vw',
-        width: '3vw',
-        height: '3vw',
+        marginTop: vh(1),
+        marginLeft: vw(4),
+        width: vw(3),
+        height: vw(3),
         transform: [{ rotate: "90deg" }]
     },
     message: {
-        marginTop: '1vh',
-        marginLeft: '25px',
+        marginTop: vh(1),
+        marginLeft: 25,
         fontStyle: 'italic',
         color: '#ffc900',
     }
 
 });
+
+
