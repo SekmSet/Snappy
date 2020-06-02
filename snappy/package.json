@@ -35,8 +35,10 @@
     "react-router-native": "^5.2.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.8.6",
     "babel-preset-expo": "~8.1.0",
-    "@babel/core": "^7.8.6"
+    "eslint": "^7.1.0",
+    "eslint-plugin-react": "^7.20.0"
   },
   "private": true
 }
