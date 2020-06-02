@@ -1,12 +1,12 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
   Link
 } from 'react-router-dom';
-
-import {getCurentUser} from '../../service/auth/login';
+import UserContext from '../../context/context';
 
 const Header = () => {
-  const email = getCurentUser();
+  const { email } = useContext(UserContext);
+
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
