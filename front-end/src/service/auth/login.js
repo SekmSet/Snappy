@@ -1,6 +1,4 @@
 import axios from '../axios';
-const token = localStorage.getItem('token');
-const email = localStorage.getItem('email');
 
 export async function fetchLogin (email, password) {
   try {
@@ -10,16 +8,4 @@ export async function fetchLogin (email, password) {
   } catch (e) {
     return {error: e.response.data.data};
   }
-}
-
-export function isAuthenticated () {
-  return (token);
-}
-
-export function getCurentUser () {
-  if (!isAuthenticated() || token === 'undefined') {
-    return false;
-  }
-
-  return email;
 }

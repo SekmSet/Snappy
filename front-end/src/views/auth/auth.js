@@ -1,9 +1,11 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import { useForm } from 'react-hook-form';
 import {fetchLogin} from '../../service/auth/login';
 import {fetchRegister} from '../../service/auth/register';
+import UserContext from '../../context/context';
 
 const AuthPage = () => {
+  const { setAuth } = useContext(UserContext);
   const [error, setError] = useState('');
   const { handleSubmit, register, errors } = useForm();
 
@@ -15,9 +17,7 @@ const AuthPage = () => {
       return;
     }
 
-    localStorage.setItem('token', result.token);
-    localStorage.setItem('email', result.email);
-    window.location.reload();
+    setAuth(result);
   };
 
   const registerSubmit = async values => {
