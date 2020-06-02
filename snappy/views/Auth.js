@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, SafeAreaView, TextInput } from 'react-native';
-import { Button } from 'react-native-elements';
+import { StyleSheet, Text, View, SafeAreaView, TextInput, Button} from 'react-native';
+// import { Button } from 'react-native-elements';
+// var {vw, vh, vmin, vmax} = require('react-native-viewport-units');
+import { vw, vh, vmin, vmax } from 'react-native-expo-viewport-units';
+
 import { register, login } from "../services/auth"
 import { storeData, getData } from "../services/localStorage";
 
@@ -59,7 +62,6 @@ export default function Auth({ navigation }) {
                     <Button style={styles.register} title="REGISTER" buttonStyle={{ backgroundColor: '#ffd800', borderRadius: 15, padding: 10 }} titleStyle={{ color: '#000', fontSize: 14 }} onPress={handleRegister} />
                     <Button style={styles.login} title="LOGIN" buttonStyle={{ backgroundColor: '#151515', borderRadius: 15, padding: 10 }} titleStyle={{ color: '#FFF', fontSize: 14 }} onPress={handleLogin} />
                 </View>
-
             </View>
         </SafeAreaView>
     );
@@ -74,7 +76,7 @@ const styles = StyleSheet.create({
     },
     header: {
         backgroundColor: '#353535',
-        width: '100vw',
+        width: vw(100),
         position: 'absolute',
         top: 0
     },
@@ -83,10 +85,9 @@ const styles = StyleSheet.create({
         marginBottom: 100,
         color: '#bdbdbd',
         fontWeight: 'bold',
-        fontSize: '14vw',
+        fontSize: vw(14),
         width: '100%',
         textAlign: 'center',
-        color: '#F7F7F7'
     },
     topContainer: {
         marginTop: '50%',
@@ -110,11 +111,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     register: {
-        width: '25vw',
-        marginRight: '20px'
+        width: vw(25),
+        marginRight: 20
     },
     login: {
-        width: '25vw'
+        width: vw(25)
     },
     agree: {
         color: '#808080',
@@ -124,7 +125,7 @@ const styles = StyleSheet.create({
     },
     bar: {
         display: 'flex',
-        width: '12px',
+        width: 12,
         height: '100%',
         backgroundColor: '#ffd800',
         position: 'absolute',
