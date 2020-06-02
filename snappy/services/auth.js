@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from './axios';
 
 export const register = async (email, password) => {
     return await axios.post('http://snapi.epitech.eu/inscription', { email, password })
