@@ -8,7 +8,6 @@ export default function Auth ({ navigation }) {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    /*   console.log('totot'); */
     fetchAllUser(setUsers);
   }, []);
 

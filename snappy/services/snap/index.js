@@ -1,22 +1,5 @@
+import { Buffer } from 'buffer';
 import axios from '../axios';
-
-export async function sendSnap ({ photo, duration, email }) {
-  const rep = await fetch(photo);
-  const file = new File([await rep.blob()], 'capture.png', {
-    type: 'image/png'
-  });
-
-  const formData = new FormData();
-  formData.append('duration', duration);
-  formData.append('to', email);
-  formData.append('image', file);
-
-  await axios.post('snap', formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-    },
-  });
-}
 
 export async function getSnaps (setSnaps) {
   const allSnaps = await axios.get('snaps');
@@ -39,8 +22,26 @@ export async function seenSnap (idSnap, setSnap) {
   setSnap('');
 }
 
-/* export async function fetchEmails(setEmail) {
+export async function sendSnap ({photo, duration, email}) {
+  const formData = new FormData();
+  formData.append('duration', duration);
+  formData.append('to', email);
+  formData.append('image', {
+    uri: photo,
+    type: 'image/jpeg',
+    name: 'photo'
+  });
+
+  await axios.post('snap', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+}
+
+export async function fetchEmails (setEmail) {
   const response = await axios.get('all');
   setEmail(response.data.data);
+
+  return response.data.data;
 }
- */
