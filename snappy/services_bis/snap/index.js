@@ -1,15 +1,14 @@
 import axios from '../axios';
 
 export async function sendSnap ({photo, duration, email}) {
-  const rep = await fetch(photo);
-  const file = new File([await rep.blob()], 'capture.png', {
-    type: 'image/png'
-  });
-
   const formData = new FormData();
   formData.append('duration', duration);
   formData.append('to', email);
-  formData.append('image', file);
+  formData.append('file', {
+    uri: photo,
+    type: 'image/png',
+    name: 'teste'
+  });
 
   await axios.post('snap', formData, {
     headers: {
@@ -42,4 +41,6 @@ export async function seenSnap (idSnap, setSnap) {
 export async function fetchEmails (setEmail) {
   const response = await axios.get('all');
   setEmail(response.data.data);
+
+  return response.data.data;
 }

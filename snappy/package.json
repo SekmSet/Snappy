@@ -30,6 +30,7 @@
     "react-native-safe-area-context": "0.7.3",
     "react-native-scalable-image": "^1.0.0",
     "react-native-screens": "~2.2.0",
+    "react-native-select-multiple": "^2.1.0",
     "react-native-select-two": "^1.1.0",
     "react-native-viewport-units": "0.0.5",
     "react-native-web": "~0.11.7",

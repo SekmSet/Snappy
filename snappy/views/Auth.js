@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, TextInput, Button} from 'react-native';
 import { vw } from 'react-native-expo-viewport-units';
+import SelectMultiple from 'react-native-select-multiple';
 
 import { register, login } from '../services/auth';
 import { storeData } from '../services/localStorage';
