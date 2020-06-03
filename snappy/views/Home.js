@@ -8,14 +8,12 @@ export default function Auth ({ navigation }) {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    console.log('totot');
+    /*   console.log('totot'); */
     fetchAllUser(setUsers);
   }, []);
 
   function Item ({ email }) {
-    /* email_formated = email; */
     email = typeof email === 'string' ? email.split('@')[0] : '';
-
     return (
       <View style={styles.item}>
         <Text>{email}</Text>
@@ -51,6 +49,11 @@ export default function Auth ({ navigation }) {
           title="Take a Snap"
           onPress={() => navigation.navigate('Snap')}
         />
+        <Button
+          title="Snaps"
+          onPress={() => navigation.navigate('ShowAllSnap')}
+        />
+
       </View>
       <View style={styles.reception}>
         <FlatList

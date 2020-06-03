@@ -8,6 +8,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Auth from './views/Auth';
 import Home from './views/Home';
 import Snap from './views/Snap';
+import ShowAllSnap from './views/ShowAllSnap';
 
 const Stack = createStackNavigator();
 
@@ -18,6 +19,7 @@ function App () {
         <Stack.Screen name="Auth" component={Auth} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Snap" component={Snap} />
+        <Stack.Screen name="ShowAllSnap" component={ShowAllSnap} />
       </Stack.Navigator>
     </NavigationContainer >
   );
