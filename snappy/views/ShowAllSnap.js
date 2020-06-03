@@ -13,11 +13,12 @@ const AllSnaps = () => {
   }, [snap]);
 
   const openSnap = ({ snap_id, duration }) => {
-    readSnap(snap_id, setSnap).then(() => {
-      setTimeout(() => {
-        seenSnap(snap_id, setSnap);
-      }, duration * 1000);
-    });
+    readSnap(snap_id, setSnap)
+      .finally(() => {
+        setTimeout(() => {
+          seenSnap(snap_id, setSnap);
+        }, duration * 1000);
+      });
   };
 
 

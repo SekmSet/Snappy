@@ -6,7 +6,6 @@ export const fetchAllUser = async (setUsers) => {
     setUsers(resultUser.data.data);
     return resultUser;
   } catch (exception) {
-    console.log(exception);
     return exception;
   }
 };

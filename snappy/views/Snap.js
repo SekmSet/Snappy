@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import {Text, View, TouchableOpacity, Button} from 'react-native';
 import { Camera } from 'expo-camera';
-import {Picker} from '@react-native-community/picker';
-// eslint-disable-next-line no-unused-vars
-import {fetchEmails, sendSnap} from '../services_bis/snap/index';
+import { Picker } from 'react-native';
+
+// import {Picker} from '@react-native-community/picker';
+import {fetchEmails, sendSnap} from '../services/snap/index';
 
 export default function App () {
   const [hasPermission, setHasPermission] = useState(null);
@@ -23,10 +24,9 @@ export default function App () {
   }, []);
 
   useEffect(() =>{
-    fetchEmails(setEmails).then( (rep) => {
+    fetchEmails(setEmails).then((rep) => {
       setEmail(rep[0].email);
-    }
-    );
+    });
   }, []);
 
   if (hasPermission === null) {
@@ -49,7 +49,6 @@ export default function App () {
   }
 
   async function sendNewSnap () {
-    console.log(snap, duration, email);
     await sendSnap({photo: snap, duration, email });
     setSnap('');
   }
