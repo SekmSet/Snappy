@@ -13,6 +13,9 @@ export default function Auth ({ navigation }) {
   }, []);
 
   function Item ({ email }) {
+    /* email_formated = email; */
+    email = typeof email === 'string' ? email.split('@')[0] : '';
+
     return (
       <View style={styles.item}>
         <Text>{email}</Text>
