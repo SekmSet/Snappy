@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import {Text, View, TouchableOpacity, Button} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { Button } from 'react-native-elements';
+import Header from '../components/header';
 import { Camera } from 'expo-camera';
-import { Picker } from 'react-native';
-
+// import { Picker } from 'react-native';
+import MultiSelect from 'react-native-multiple-select';
+import { vw, vh } from 'react-native-expo-viewport-units';
 // import {Picker} from '@react-native-community/picker';
-import {fetchEmails, sendSnap} from '../services/snap/index';
-
-export default function App () {
+import { fetchEmails, sendSnap } from '../services/snap/index';
+export default function App() {
   const [hasPermission, setHasPermission] = useState(null);
   const [cameraRef, setCameraRef] = useState(null);
   const [emails, setEmails] = useState([]);
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState([]);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [snap, setSnap] = useState('');
-  const [duration, setDuration] = useState(1);
-  const durations = [...Array(10).keys()].map(i => i+1);
+  const [duration, setDuration] = useState([]);
+  const durations = [...Array(10).keys()].map(i => i + 1);
 
   useEffect(() => {
     (async () => {
@@ -23,7 +25,7 @@ export default function App () {
     })();
   }, []);
 
-  useEffect(() =>{
+  useEffect(() => {
     fetchEmails(setEmails).then((rep) => {
       setEmail(rep[0].email);
     });
@@ -37,56 +39,88 @@ export default function App () {
     return <Text>No access to camera</Text>;
   }
 
-  async function takePhoto () {
+  async function takePhoto() {
     if (cameraRef) {
       const photo = await cameraRef.takePictureAsync();
       await setSnap(photo.uri);
     }
   }
 
-  async function resetSnap () {
+  async function resetSnap() {
     await setSnap('');
   }
 
-  async function sendNewSnap () {
-    await sendSnap({photo: snap, duration, email });
+  async function sendNewSnap() {
+    console.log(snap, duration, email[0])
+    await sendSnap({ photo: snap, duration: duration[0], email: email[0] });
     setSnap('');
   }
 
   return (
-    <View style={{ flex: 1 }}>
-      { snap !== '' &&
-      <View>
-        <Text>SNAP IS DEFINE</Text>
+    <View style={{ flex: 1, backgroundColor: '#222' }}>
+      {snap !== '' &&
+        <View>
+          <Header padding={false} />
+          <Text style={styles.title}>CHOOSE YOUR CONTACT</Text>
+          <View style={styles.emailSelect}>
+            <MultiSelect
+              items={emails.map((i) => {
+                return {
+                  id: i.email,
+                  name: i.email
+                };
+              })}
+              single="true"
+              uniqueKey="id"
+              onSelectedItemsChange={(value) => setEmail(value)}
+              selectedItems={email}
+              selectText="Pick Email"
+              searchInputPlaceholderText="Search Email..."
+              tagRemoveIconColor="#CCC"
+              tagBorderColor="#CCC"
+              tagTextColor="#CCC"
+              selectedItemTextColor="#CCC"
+              selectedItemIconColor="#CCC"
+              itemTextColor="#000"
+              searchInputStyle={{ color: '#CCC' }}
+              submitButtonColor="#CCC"
+              submitButtonText="Submit"
+            />
+          </View>
 
-        <Picker
-          selectedValue={duration}
-          style={{ height: 50, width: 150 }}
-          onValueChange={(itemValue, itemIndex) => setDuration(itemValue)}
-        >
-          {durations.map((d) => (
-            <Picker.Item key={d} label={d.toString()} value={d} />
-          ))}
-        </Picker>
-
-        <Picker
-          selectedValue={email}
-          style={{ height: 50, width: 150 }}
-          onValueChange={(itemValue, itemIndex) => setEmail(itemValue)}
-        >
-          {emails.map((e) => (
-            <Picker.Item key={e.email} label={e.email} value={e.email} />
-          ))}
-        </Picker>
-
-        <Button title="Reset" onPress={resetSnap} />
-        <Button title="Send" onPress={sendNewSnap} />
-      </View>
+          <View style={styles.emailSelect}>
+            <MultiSelect
+              items={durations.map((i) => {
+                return {
+                  id: i.toString(),
+                  name: i.toString()
+                };
+              })}
+              single='true'
+              uniqueKey="id"
+              onSelectedItemsChange={(value) => setDuration(value)}
+              selectedItems={duration}
+              selectText="Pick Duration"
+              searchInputPlaceholderText="Search Duration..."
+              emailsInput tagRemoveIconColor="#CCC"
+              tagBorderColor="#CCC"
+              tagTextColor="#CCC"
+              selectedItemTextColor="#CCC"
+              selectedItemIconColor="#CCC"
+              itemTextColor="#000"
+              searchInputStyle={{ color: '#CCC' }}
+              submitButtonColor="#CCC"
+              submitButtonText="Submit"
+            />
+          </View>
+          <Button title="Reset" buttonStyle={{ backgroundColor: '#ffd100', marginTop: vh(20), marginBottom: vh(4), width: vw(80), marginLeft: vw(10) }} onPress={resetSnap} />
+          <Button title="Send" buttonStyle={{ backgroundColor: '#575757', width: vw(80), marginLeft: vw(10) }} onPress={sendNewSnap} />
+        </View>
       }
-
+      {/* _________________________________________________________________________________________________________________________ */}
       {snap === '' &&
         <Camera style={{ flex: 1 }} type={type} ref={ref => {
-          setCameraRef(ref) ;
+          setCameraRef(ref);
         }}
         >
 
@@ -110,24 +144,26 @@ export default function App () {
               }}>
               <Text style={{ fontSize: 18, marginBottom: 10, color: 'white' }}> Flip </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={{alignSelf: 'center'}} onPress={takePhoto}>
+            <TouchableOpacity style={{ alignSelf: 'center' }} onPress={takePhoto}>
               <View style={{
                 borderWidth: 2,
                 borderRadius: 50,
                 borderColor: 'white',
                 height: 50,
-                width:50,
+                width: 50,
                 display: 'flex',
                 justifyContent: 'center',
-                alignItems: 'center'}}
+                alignItems: 'center'
+              }}
               >
                 <View style={{
                   borderWidth: 2,
                   borderRadius: 50,
                   borderColor: 'white',
                   height: 40,
-                  width:40,
-                  backgroundColor: 'white'}} >
+                  width: 40,
+                  backgroundColor: 'white'
+                }} >
                 </View>
               </View>
             </TouchableOpacity>
@@ -137,3 +173,19 @@ export default function App () {
     </View>
   );
 }
+const styles = StyleSheet.create({
+  title: {
+    textAlign: 'center',
+    fontSize: vw(6),
+    padding: vw(5),
+    fontWeight: 'bold',
+    marginBottom: vh(5),
+    textDecorationLine: 'underline',
+    color: '#EEE'
+  },
+  emailSelect: {
+    width: vw(80),
+    marginLeft: vw(10),
+    marginBottom: vh(3)
+  }
+});

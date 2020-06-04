@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, SafeAreaView, Image, FlatList } from 'react-nat
 import { Button } from 'react-native-elements';
 import { fetchAllUser } from '../services/allusers';
 import { vw, vh } from 'react-native-expo-viewport-units';
-
+import Header from '../components/header';
 export default function Auth({ navigation }) {
   const [users, setUsers] = useState([]);
 
@@ -11,18 +11,18 @@ export default function Auth({ navigation }) {
     fetchAllUser(setUsers);
   }, []);
 
-  function Item({ email }) {
-    email = typeof email === 'string' ? email.split('@')[0] : '';
-    return (
-      <View style={styles.item}>
-        <Text>{email}</Text>
-      </View>
-    );
-  }
+  // function Item({ email }) {
+  //   email = typeof email === 'string' ? email.split('@')[0] : '';
+  //   return (
+  //     <View style={styles.item}>
+  //       <Text>{email}</Text>
+  //     </View>
+  //   );
+  // }
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
+      {/* <View style={styles.header}>
         <Image
           style={styles.logo}
           source={require('../assets/user1.png')}
@@ -42,12 +42,14 @@ export default function Auth({ navigation }) {
             />
           </View>
         </View>
-      </View>
-      <View>
+      </View> */}
+      <Header />
+
+      <View style={styles.send}>
         <Button
           title="Take a Snap"
           onPress={() => navigation.navigate('Snap')}
-          buttonStyle={{ backgroundColor: '#ffd800', borderRadius: 15, width: vw(45), marginTop: 20 }}
+          buttonStyle={{ backgroundColor: '#ffd800', borderRadius: 15, width: vw(45), marginTop: 20, marginBottom: 20 }}
           titleStyle={{ color: '#000', fontSize: 15 }}
         />
         <Button
@@ -56,23 +58,28 @@ export default function Auth({ navigation }) {
           buttonStyle={{ backgroundColor: '#151515', borderRadius: 15, width: vw(45) }}
           titleStyle={{ color: '#FFF', fontSize: 14 }}
         />
-
-
       </View>
+
+
       <View style={styles.reception}>
         <FlatList
           data={users}
-          renderItem={({ item }) => <Item email={item.email} />}
+          renderItem={({ item }) => (
+            <View style={styles.oneDialog} >
+              <View style={styles.headerDialog}>
+                <View>
+                  <Image
+                    style={styles.imgUsers}
+                    source={require('../assets/user5.png')}
+                  />
+                </View>
+                <Text style={styles.friend}>{item.email}</Text>
+              </View>
+            </View>)}
           keyExtractor={item => item.email}
         />
       </View>
-      <View style={styles.reception}>
-        <Image
-          style={styles.triangle}
-          source={require('../assets/triangle.png')}
-        />
-        <Text style={styles.message}>Reçu il y a </Text>
-      </View>
+
     </SafeAreaView>
   );
 }
@@ -87,8 +94,7 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: '#353535',
     width: vw(100),
-    // position: 'fixed',
-    top: 0,
+    top: 50,
     display: 'flex',
     flexDirection: 'row',
     zIndex: 1000
@@ -99,18 +105,14 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     margin: 30
   },
-  name: {
-    color: '#ffc900',
-    marginTop: 38,
-    fontSize: vw(8),
-    fontWeight: 'bold',
-    width: vw(50),
-    marginLeft: vw(7)
+  newTchat: {
+    width: vw(3),
+    height: vh(3),
   },
+
   settingContainer: {
-    // position: 'absolute',
     top: vh(1.5),
-    left: '100%',
+    left: vw(1),
     width: vw(10),
     height: vw(10),
     borderRadius: 50,
@@ -123,9 +125,8 @@ const styles = StyleSheet.create({
     height: vw(7),
   },
   dialogContainer: {
-    // position: 'absolute',
-    top: vh(10),
-    left: '100%',
+    top: vh(4),
+    left: vw(1),
     width: vw(8),
     height: vw(8),
     borderRadius: 50,
@@ -133,51 +134,34 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 3
   },
-  newTchat: {
-    width: vw(6.5),
-    height: vw(6.5),
-  },
-  allDialog: {
-    // overflow: scroll,
-    marginTop: vw(30)
-  },
   oneDialog: {
     backgroundColor: '#909090',
     width: vw(100),
-    display: 'flex',
-    flexDirection: 'row',
     margin: 2,
+    padding: 2
+  },
+  reception: {
+    marginTop: vh(25)
+  },
+  headerDialog: {
+    flex: 1,
+    flexDirection: 'row'
   },
   friend: {
     color: '#353535',
-    marginTop: 25,
-    fontSize: vw(6),
+    marginTop: vh(3.5),
+    fontSize: vw(5),
     fontWeight: 'bold',
-    width: vw(50),
-    marginLeft: vw(3)
+    width: vw(75)
   },
-  reception: {
-    display: 'flex',
-    flexDirection: 'row',
-    marginTop: 15,
+  imgUsers: {
+    borderRadius: 50,
+    width: vw(12),
+    height: vw(12),
+    margin: vw(5)
   },
-  triangle: {
-    marginTop: vh(1),
-    marginLeft: vw(4),
-    width: vw(3),
-    height: vw(3),
-    transform: [{ rotate: '90deg' }]
-  },
-  message: {
-    marginTop: vh(1),
-    marginLeft: 25,
-    fontStyle: 'italic',
-    color: '#ffc900',
-  },
-  item: {
-    backgroundColor: '#CCCCCC',
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-  },
+  send: {
+    position: 'absolute',
+    top: 100
+  }
 });

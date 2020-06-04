@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { StyleSheet, Text, View, SafeAreaView, TextInput, } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, TextInput } from 'react-native';
 import { Button } from 'react-native-elements';
 import { vw, vh } from 'react-native-expo-viewport-units';
 
@@ -59,9 +59,10 @@ export default function Auth({ navigation }) {
         </View>
         {error != '' && <Text style={styles.error}>{error}</Text>}
         {err != '' && <Text style={styles.error}>{err}</Text>}
+
         <View style={styles.buttons}>
-          <Button style={styles.register} title="REGISTER" buttonStyle={{ backgroundColor: '#ffd800', borderRadius: 15, width: vw(25), marginLeft: vw(20), marginRight: vw(10) }} titleStyle={{ color: '#000', fontSize: 14 }} onPress={handleRegister} />
-          <Button style={styles.login} title="LOGIN" buttonStyle={{ backgroundColor: '#151515', borderRadius: 15, width: vw(25) }} titleStyle={{ color: '#FFF', fontSize: 14 }} onPress={handleLogin} />
+          <Button style={styles.register} title="REGISTER" buttonStyle={{ backgroundColor: '#ffd800', borderRadius: 15, width: vw(50), marginLeft: vw(26), marginBottom: vw(3) }} titleStyle={{ color: '#000', fontSize: 14 }} onPress={handleRegister} />
+          <Button style={styles.login} title="LOGIN" buttonStyle={{ backgroundColor: '#151515', borderRadius: 15, width: vw(50), marginLeft: vw(26) }} titleStyle={{ color: '#FFF', fontSize: 14 }} onPress={handleLogin} />
         </View>
       </View>
     </SafeAreaView>
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#252525',
     alignItems: 'center',
     justifyContent: 'space-around',
-    width: vw(100),
+    width: vw(100)
   },
   header: {
     backgroundColor: '#353535',
@@ -99,18 +100,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#555555',
     color: '#121212',
     marginTop: 25,
-    padding: 15,
     width: vw(60),
     height: 40,
-    borderRadius: 20
+    borderRadius: 20,
+    textAlign: 'center'
   },
   buttons: {
-    flex: 1,
     width: vw(100),
     height: vh(15),
-    flexDirection: 'row',
-    margin: 20,
-    zIndex: 2000
+    margin: 20
   },
   agree: {
     color: '#808080',
@@ -132,8 +130,5 @@ const styles = StyleSheet.create({
     color: 'red',
     fontWeight: 'bold',
     textAlign: 'center'
-  },
-  empty: {
-    width: 50
   }
 });

@@ -21,7 +21,6 @@ const AllSnaps = () => {
       });
   };
   function Item({ snap_id, duration, from }) {
-    from = typeof from === 'string' ? from.split('@')[0] : '';
     return (
       <View style={styles.item}>
         <Text style={styles.item3}>{from} </Text>
