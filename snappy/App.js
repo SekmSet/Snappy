@@ -11,7 +11,6 @@ import Snap from './views/Snap';
 import ShowAllSnap from './views/ShowAllSnap';
 import { UserConsumer, UserProvider } from './context/context';
 
-
 const Stack = createStackNavigator();
 
 function App() {

@@ -1,14 +1,13 @@
-import React, {useContext, useEffect, useState} from 'react';
-import { StyleSheet, Text, View, SafeAreaView, TextInput, Button} from 'react-native';
-import { vw } from 'react-native-expo-viewport-units';
+import React, { useContext, useEffect, useState } from 'react';
+import { StyleSheet, Text, View, SafeAreaView, TextInput, } from 'react-native';
+import { Button } from 'react-native-elements';
+import { vw, vh } from 'react-native-expo-viewport-units';
 
 import { register, login } from '../services/auth';
 import UserContext from '../context/context';
 
-<<<<<<< HEAD
-export default function Auth ({ navigation }) {
+export default function Auth({ navigation }) {
   const { setAuth, isAuth } = useContext(UserContext);
-  
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [error, setError] = useState('');
@@ -36,35 +35,6 @@ export default function Auth ({ navigation }) {
       navigation.navigate('Home');
     } catch (e) {
       setError(e.response.data.data);
-=======
-    const handleRegister = async (event) => {
-        try {
-            const reg = await register(email, password);
-            console.log(reg)
-            handleLogin()
-        } catch (e) {
-            console.log(e.response.data.data)
-            setErr(e.response.data.data);
-        }
-        // register(email, password).then(data => console.log(data)).then(handleLogin()).catch(err => console.error(err));
-    }
-    const handleLogin = async (event) => {
-        try {
-            const log = await login(email, password);
-            console.log(log)
-            storeData(log.data.data.token);
-            navigation.navigate('Home');
-        } catch (e) {
-            console.log(e.response.data.data)
-            setError(e.response.data.data);
-        }
-    }
-    const handleEmailChange = (value) => {
-        setEmail(value);
-    }
-    const handlePasswordChange = (value) => {
-        setPassword(value);
->>>>>>> Design users
     }
   };
   const handleEmailChange = (value) => {
@@ -85,13 +55,13 @@ export default function Auth ({ navigation }) {
         <View>
           <TextInput style={styles.input} placeholder='EMAIL' onChangeText={handleEmailChange} />
           <TextInput secureTextEntry={true} style={styles.input} placeholder='PASSWORD' onChangeText={handlePasswordChange} />
-          <Text style={styles.agree}> By logging in you accepts the terms of nudes</Text>
+          <Text style={styles.agree}> By logging in you accepts the terms of snappy</Text>
         </View>
         {error != '' && <Text style={styles.error}>{error}</Text>}
         {err != '' && <Text style={styles.error}>{err}</Text>}
         <View style={styles.buttons}>
-          <Button style={styles.register} title="REGISTER" buttonStyle={{ backgroundColor: '#ffd800', borderRadius: 15, padding: 10 }} titleStyle={{ color: '#000', fontSize: 14 }} onPress={handleRegister} />
-          <Button style={styles.login} title="LOGIN" buttonStyle={{ backgroundColor: '#151515', borderRadius: 15, padding: 10 }} titleStyle={{ color: '#FFF', fontSize: 14 }} onPress={handleLogin} />
+          <Button style={styles.register} title="REGISTER" buttonStyle={{ backgroundColor: '#ffd800', borderRadius: 15, width: vw(25), marginLeft: vw(20), marginRight: vw(10) }} titleStyle={{ color: '#000', fontSize: 14 }} onPress={handleRegister} />
+          <Button style={styles.login} title="LOGIN" buttonStyle={{ backgroundColor: '#151515', borderRadius: 15, width: vw(25) }} titleStyle={{ color: '#FFF', fontSize: 14 }} onPress={handleLogin} />
         </View>
       </View>
     </SafeAreaView>
@@ -103,7 +73,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#252525',
     alignItems: 'center',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
+    width: vw(100),
   },
   header: {
     backgroundColor: '#353535',
@@ -116,7 +87,7 @@ const styles = StyleSheet.create({
     marginBottom: 100,
     color: '#bdbdbd',
     fontWeight: 'bold',
-    fontSize: vw(14),
+    fontSize: vw(11),
     width: '100%',
     textAlign: 'center',
   },
@@ -129,21 +100,17 @@ const styles = StyleSheet.create({
     color: '#121212',
     marginTop: 25,
     padding: 15,
-    width: '100%',
+    width: vw(60),
     height: 40,
     borderRadius: 20
   },
   buttons: {
     flex: 1,
-    width: '100%',
+    width: vw(100),
+    height: vh(15),
     flexDirection: 'row',
-  },
-  register: {
-    width: vw(25),
-    marginRight: 20
-  },
-  login: {
-    width: vw(25)
+    margin: 20,
+    zIndex: 2000
   },
   agree: {
     color: '#808080',
@@ -165,5 +132,8 @@ const styles = StyleSheet.create({
     color: 'red',
     fontWeight: 'bold',
     textAlign: 'center'
+  },
+  empty: {
+    width: 50
   }
 });
