@@ -14,12 +14,12 @@
 body {
   height: 100%;
   width: 100%;
-  background-color: #121212;
+  background-color: #000000;
   color: #999999;
 }
 
 a {
-  color: #999999;
+  color: #bdbdbd;
 }
 
 .app-container {
@@ -63,24 +63,33 @@ nav.navbar-container .links a {
 }
 
 .form-container {
-  width: 70%;
-  height: 50%;
-  left: 15%;
-  top: 25%;
+  width: 60%;
+  height: 60%;
+  left: 20%;
+  top: 20%;
   position: absolute;
   display: flex;
 }
 
 .form-container .left-container {
   position: relative;
-  background-color: #37382e;
-  color: #f7d244;
+  background-color: #121212;
+  color: #8ba3a8;
   width: 60%;
+}
+
+.form-container .left-container .status-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 60%;
+  margin: auto;
+  margin-top: 30%;
 }
 
 .form-container .right-container {
   position: relative;
-  background-color: #f09e02;
+  background-color: #9b4230;
   width: 40%;
 }
 
@@ -95,7 +104,7 @@ nav.navbar-container .links a {
 }
 
 .form-container .right-container form.form .MuiInput-underline:before {
-  border-bottom-color: #37382e !important;
+  border-bottom-color: #ecedea !important;
 }
 
 .form-container .right-container .text-fields {
@@ -105,7 +114,7 @@ nav.navbar-container .links a {
 }
 
 .form-container .right-container .text-fields * {
-  color: #37382e !important;
+  color: #c8c4c1 !important;
 }
 
 .form-container .right-container .email-input {
@@ -113,13 +122,181 @@ nav.navbar-container .links a {
 }
 
 .form-container .right-container .validation {
-  margin-top: 7%;
+  margin-top: 15%;
   display: flex;
   justify-content: flex-end;
 }
 
+.form-container .right-container .validation .MuiButton-label,
+.form-container .right-container .validation .MuiButton-containedPrimary {
+  background-color: #1b263c;
+}
+
+.form-container .right-container .validation .login-valid p,
+.form-container .right-container .validation .register-valid p {
+  font-size: small;
+}
+
 video {
   border-radius: 30px;
+}
+
+.snap {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.snap .snap-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  height: 60%;
+  box-sizing: border-box;
+  /*    RESET & SEND  SECTION    */
+}
+
+.snap .snap-container .MuiListItem-button {
+  border: 4px solid;
+  border-color: #121212;
+  border-radius: 7%;
+  color: #d3d3d3;
+  background-color: #484848;
+}
+
+.snap .snap-container .select {
+  display: flex;
+  justify-content: space-around;
+  width: 43%;
+  background-color: #121212;
+  border-radius: 5%;
+  padding: 2%;
+}
+
+.snap .snap-container .snap-photo {
+  width: 50%;
+}
+
+.snap .snap-container .snap-photo img {
+  width: 100%;
+  max-height: 100%;
+}
+
+.snap .snap-container .send-to,
+.snap .snap-container .duration {
+  display: block;
+  box-sizing: border-box;
+  max-width: 60%;
+}
+
+.snap .snap-container .photo,
+.snap .snap-container .send-to,
+.snap .snap-container .duration {
+  border-radius: 3%;
+}
+
+.snap .snap-container .send-to {
+  padding: 2%;
+}
+
+.snap .snap-container .send-to .email-list {
+  background-color: #ff6f00;
+  width: 220px !important;
+  border-radius: 3%;
+  padding: 4%;
+  margin-top: 6px;
+}
+
+.snap .snap-container .duration {
+  padding: 2%;
+}
+
+.snap .snap-container .duration .duration-list {
+  background-color: #ff6f00;
+  border-radius: 3%;
+  padding: 4%;
+  width: 100px !important;
+  margin-top: 6px;
+}
+
+.snap .snap-container .sub-title {
+  color: #ff6f00;
+}
+
+.snap .snap-container .send-reset {
+  padding-top: 2%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.snap .snap-container .send-reset .recap {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.snap .snap-container .send-reset .recap h4 {
+  margin-right: 5%;
+  width: 30%;
+}
+
+.snap .snap-container .send-reset .recap button {
+  margin-right: 2%;
+}
+
+.snap .snap-container .send-reset .recap .rec-email,
+.snap .snap-container .send-reset .recap .rec-duration {
+  color: #ff6f00;
+}
+
+.snap .snap-container .send-reset .reset-button {
+  color: #bdbdbd !important;
+  background-color: #121212;
+}
+
+.snap .snap-container .send-reset .send-button {
+  color: #121212 !important;
+  background-color: #ff6f00;
+}
+
+/**
+================ OPEN SNAP SECTION ====================
+*/
+.snaps {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.snaps .snap-list {
+  background-color: #121212;
+  width: 30%;
+}
+
+.snaps .btn-open {
+  background-color: #ff6f00;
+  border-radius: inherit;
+}
+
+.snaps .snap-container {
+  color: #bdbdbd;
+}
+
+.snaps .snap-card {
+  margin: 1% 2% 0;
+  color: #bdbdbd;
+  background-color: #000000;
+}
+
+.snaps .snap-card .MuiTypography-colorTextSecondary {
+  color: #484848;
+}
+
+.makeStyles-modal-1 :first-child {
+  background: rgba(0, 0, 0, 0.9) !important;
 }
 
 footer {
@@ -128,9 +305,11 @@ footer {
   bottom: 0;
   display: flex;
   justify-content: space-around;
+  margin-bottom: 1%;
 }
 
 footer .logged-as {
+  font-size: small;
   font-style: italic;
   font-weight: 100;
   letter-spacing: 0.05em;

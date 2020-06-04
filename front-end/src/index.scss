@@ -7,15 +7,26 @@
   text-decoration: none;
   font-family: "Roboto", sans-serif;
 }
+// *,
+// *:before,
+// *:after {
+//   margin: 0;
+//   padding: 0;
+
+//   -webkit-box-sizing: border-box !important;
+//   -moz-box-sizing: border-box !important;
+//   -ms-box-sizing: border-box !important;
+//   box-sizing: border-box !important;
+// }
 
 body {
   height: 100%;
   width: 100%;
-  background-color: $darkModeBlack;
+  background-color: $black;
   color: $darkGrey;
 }
 a {
-  color: $darkGrey;
+  color: $grey;
 }
 
 .app-container {
@@ -56,21 +67,29 @@ nav.navbar-container {
 }
 
 .form-container {
-  width: 70%;
-  height: 50%;
-  left: 15%;
-  top: 25%;
+  width: 60%;
+  height: 60%;
+  left: 20%;
+  top: 20%;
   position: absolute;
   display: flex;
   .left-container {
     position: relative;
-    background-color: $conDarkGreen;
-    color: $conLightOrange;
+    background-color: $darkModeBlack;
+    color: $secBlueGray;
     width: 60%;
+    .status-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 60%;
+      margin: auto;
+      margin-top: 30%;
+    }
   }
   .right-container {
     position: relative;
-    background-color: $conOrange;
+    background-color: $secLovedOrange2;
     width: 40%;
     form.form {
       padding-top: 30%;
@@ -80,7 +99,7 @@ nav.navbar-container {
         color: black !important;
       }
       .MuiInput-underline:before {
-        border-bottom-color: $conDarkGreen !important;
+        border-bottom-color: $secIvory !important;
       }
       // width: 80%;
     }
@@ -89,16 +108,26 @@ nav.navbar-container {
       display: flex;
       flex-direction: column;
       * {
-        color: $conDarkGreen !important;
+        color: $secTaupe !important;
       }
     }
     .email-input {
       margin-bottom: 10%;
     }
     .validation {
-      margin-top: 7%;
+      margin-top: 15%;
       display: flex;
       justify-content: flex-end;
+      .MuiButton-label,
+      .MuiButton-containedPrimary {
+        background-color: $secDarkBlue;
+      }
+      .login-valid,
+      .register-valid {
+        p {
+          font-size: small;
+        }
+      }
     }
   }
 }
@@ -106,13 +135,165 @@ nav.navbar-container {
 video {
   border-radius: 30px;
 }
+
+.snap {
+  width: 100%;
+  box-sizing: border-box;
+  .snap-container {
+    // background-color: $darkModeBlack;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    height: 60%;
+    // padding: 2%;
+    box-sizing: border-box;
+    .MuiTypography-root {
+      // margin: auto;
+    }
+    .MuiListItem-button {
+      border: 4px solid;
+      border-color: $darkModeBlack;
+      border-radius: 7%;
+      color: $lightGrey;
+      background-color: #484848;
+    }
+    //SELECT THE DURATION AND THE EMAIL
+    .select {
+      display: flex;
+      justify-content: space-around;
+      width: 43%;
+      background-color: $darkModeBlack;
+      border-radius: 5%;
+      padding: 2%;
+    }
+    .snap-photo {
+      width: 50%;
+      img {
+        width: 100%;
+        max-height: 100%;
+      }
+    }
+    .send-to,
+    .duration {
+      display: block;
+      box-sizing: border-box;
+      max-width: 60%;
+    }
+    .photo,
+    .send-to,
+    .duration {
+      border-radius: 3%;
+    }
+    .send-to {
+      // background-color: #c17900;
+      padding: 2%;
+      .email-list {
+        background-color: #ff6f00;
+        width: 220px !important;
+        border-radius: 3%;
+        padding: 4%;
+        margin-top: 6px;
+      }
+    }
+    .duration {
+      // background-color: #560027;
+      padding: 2%;
+      .duration-list {
+        background-color: #ff6f00;
+        border-radius: 3%;
+        padding: 4%;
+        width: 100px !important;
+        margin-top: 6px;
+      }
+    }
+    .sub-title {
+      color: #ff6f00;
+    }
+    /*    RESET & SEND  SECTION    */
+    .send-reset {
+      padding-top: 2%;
+      // padding-bottom: 1%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      .recap {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        // align-items: center;
+        // flex-direction: column;
+        h4 {
+          margin-right: 5%;
+          width: 30%;
+        }
+        button {
+          margin-right: 2%;
+        }
+        .rec-email,
+        .rec-duration {
+          color: #ff6f00;
+        }
+      }
+      .reset-button {
+        color: $grey !important;
+        background-color: $darkModeBlack;
+      }
+      .send-button {
+        color: $darkModeBlack !important;
+        background-color: #ff6f00;
+      }
+    }
+  }
+}
+
+/**
+================ OPEN SNAP SECTION ====================
+*/
+
+.snaps {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  .snap-list {
+    background-color: $darkModeBlack;
+    width: 30%;
+  }
+  .btn-open {
+    background-color: #ff6f00;
+    border-radius: inherit;
+  }
+  .snap-container {
+    color: $grey;
+  }
+  .snap-card {
+    margin: 1% 2% 0;
+    color: $grey;
+    background-color: $black;
+    .MuiTypography-colorTextSecondary {
+      color: #484848;
+    }
+  }
+}
+
+.makeStyles-modal-1 {
+  :first-child {
+    background: rgba($color: #000000, $alpha: 0.9) !important;
+  }
+}
+
 footer {
   width: 100%;
   position: absolute;
   bottom: 0;
   display: flex;
   justify-content: space-around;
+  margin-bottom: 1%;
   .logged-as {
+    font-size: small;
     font-style: italic;
     font-weight: 100;
     letter-spacing: 0.05em;
