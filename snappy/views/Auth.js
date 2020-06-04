@@ -1,15 +1,23 @@
-import React, { useState } from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import { StyleSheet, Text, View, SafeAreaView, TextInput, Button} from 'react-native';
 import { vw } from 'react-native-expo-viewport-units';
 
 import { register, login } from '../services/auth';
-import { storeData } from '../services/localStorage';
+import UserContext from '../context/context';
 
 export default function Auth ({ navigation }) {
+  const { setAuth, isAuth } = useContext(UserContext);
+  
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [error, setError] = useState('');
   const [err, setErr] = useState('');
+
+  useEffect(() => {
+    if (isAuth) {
+      navigation.navigate('Home');
+    }
+  }, [isAuth]);
 
   const handleRegister = async () => {
     try {
@@ -23,7 +31,7 @@ export default function Auth ({ navigation }) {
   const handleLogin = async () => {
     try {
       const log = await login(email, password);
-      await storeData('token', log.data.data.token);
+      await setAuth(log.data.data);
       navigation.navigate('Home');
     } catch (e) {
       setError(e.response.data.data);
