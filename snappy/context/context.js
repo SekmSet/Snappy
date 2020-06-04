@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
+
 import { storeData, getData, deleteData } from '../services/localStorage';
 
 const UserContext = React.createContext(undefined);
@@ -15,7 +16,7 @@ export const UserProvider = ({ children }) => {
       getData('email').then((e) => {
         setEmail(e);
       }).then(() => {
-        setIsAuth(token !== null && email !== null);
+        setIsAuth(token !== '' && email !== '');
       });
     });
   }, []);

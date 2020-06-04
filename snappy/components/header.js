@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 
 import { vw, vh } from 'react-native-expo-viewport-units';
+import {Button} from 'react-native-elements';
+import UserContext from '../context/context';
 
 export default function Header ({ padding }) {
+  const {logout} = useContext(UserContext);
   if (padding === undefined) {
     padding = true;
   }
@@ -15,6 +18,9 @@ export default function Header ({ padding }) {
         source={require('../assets/user1.png')}
       />
       <Text style={styles.name}>Snappy</Text>
+      <View style={styles.dialogContainer}>
+        <Button onPress={logout} title="X"  buttonStyle={{ backgroundColor: 'transparent' }} titleStyle={{ color: '#FF0000', fontSize: 14, marginTop: -7, fontWeight: 'bold' }} />
+      </View>
     </View>
   );
 }

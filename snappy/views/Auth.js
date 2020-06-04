@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, TextInput } from 'react-native';
 import { Button } from 'react-native-elements';
 import { vw, vh } from 'react-native-expo-viewport-units';
@@ -7,19 +7,18 @@ import { register, login } from '../services/auth';
 import UserContext from '../context/context';
 
 export default function Auth ({ navigation }) {
-  const { setAuth, isAuth } = useContext(UserContext);
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
+  const { setAuth } = useContext(UserContext);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [err, setErr] = useState('');
 
-  useEffect(() => {
-    if (isAuth) {
-      navigation.navigate('Home');
-    }
-  }, [isAuth]);
-
   const handleRegister = async () => {
+    if (email === '' || password === '') {
+      setErr('Fields is required');
+      return;
+    }
+
     try {
       await register(email, password);
       await handleLogin();

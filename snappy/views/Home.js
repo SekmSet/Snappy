@@ -11,38 +11,8 @@ export default function Auth ({ navigation }) {
     fetchAllUser(setUsers);
   }, []);
 
-  // function Item({ email }) {
-  //   email = typeof email === 'string' ? email.split('@')[0] : '';
-  //   return (
-  //     <View style={styles.item}>
-  //       <Text>{email}</Text>
-  //     </View>
-  //   );
-  // }
-
   return (
     <SafeAreaView style={styles.container}>
-      {/* <View style={styles.header}>
-        <Image
-          style={styles.logo}
-          source={require('../assets/user1.png')}
-        />
-        <Text style={styles.name}>Snappy</Text>
-        <View style={styles.setting}>
-          <View style={styles.settingContainer}>
-            <Image
-              style={styles.settingIcon}
-              source={require('../assets/setting.png')}
-            />
-          </View>
-          <View style={styles.dialogContainer}>
-            <Image
-              style={styles.newTchat}
-              source={require('../assets/dialog.png')}
-            />
-          </View>
-        </View>
-      </View> */}
       <Header />
 
       <View style={styles.send}>
