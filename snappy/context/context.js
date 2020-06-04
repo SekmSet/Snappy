@@ -15,8 +15,7 @@ export const UserProvider = ({ children }) => {
       setToken(t);
       getData('email').then((e) => {
         setEmail(e);
-      }).then(() => {
-        setIsAuth(token !== '' && email !== '');
+        setIsAuth(t !== null && e !== null);
       });
     });
   }, []);
