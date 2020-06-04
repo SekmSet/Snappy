@@ -1,13 +1,15 @@
+import React,  {useContext} from 'react';
 import { useHistory } from 'react-router-dom';
+import UserContext from '../../context/context';
 
 const LogoutPage = () => {
   const history = useHistory();
+  const { logout } = useContext(UserContext);
 
-  localStorage.removeItem('token');
+  logout();
   history.push('/');
-  window.location.reload();
 
-  return null;
+  return <div>logout</div>;
 };
 
 export default LogoutPage;

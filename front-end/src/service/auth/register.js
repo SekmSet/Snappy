@@ -1,22 +1,10 @@
-const headers = new Headers();
-headers.append('Content-Type', 'application/json');
+import axios from '../axios';
 
-const token = localStorage.getItem('token');
-if (token) {
-  headers.append('Authorization', 'Basic ' + token);
-}
-
-
-export async function fetchRegister ({login, email, password, passwordConfirm }) {
-  const requestOptions = {
-    method: 'POST',
-    headers: headers,
-    body: JSON.stringify({login, email, password, passwordConfirm })
-  };
-
-  const response = await fetch(
-    'http://localhost:4242/register', requestOptions
-  );
-
-  return await response.json();
+export async function fetchRegister ({email, password}) {
+  try {
+    const reponse = await axios.post('inscription', {email, password});
+    return reponse.data.data;
+  } catch (e) {
+    return {error: e.response.data.data};
+  }
 }
