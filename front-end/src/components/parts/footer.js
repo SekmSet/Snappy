@@ -1,8 +1,8 @@
-import React, {useContext} from "react";
-import UserContext from '../../context/context'
+import React, {useContext} from 'react';
+import UserContext from '../../context/context';
 
 const Footer = () => {
-    const {email} = useContext(UserContext);
+  const {email} = useContext(UserContext);
 
   return (
     <footer className="text-muted">

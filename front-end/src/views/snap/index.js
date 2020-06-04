@@ -1,26 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import Camera from "react-html5-camera-photo";
-import "react-html5-camera-photo/build/css/index.css";
-import { fetchEmails, sendSnap } from "../../service/snap";
-import PhotoCamera from "@material-ui/icons/PhotoCamera";
+import React, { useEffect, useState } from 'react';
+import Camera from 'react-html5-camera-photo';
+import 'react-html5-camera-photo/build/css/index.css';
+import { fetchEmails, sendSnap } from '../../service/snap';
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
 
 import {
-  Select,
-  MenuItem,
   ListItem,
   ListItemText,
   Button,
   Icon,
-} from "@material-ui/core";
-import { FixedSizeList } from "react-window";
+} from '@material-ui/core';
+import { FixedSizeList } from 'react-window';
 
 const Snap = () => {
-  const [photo, setPhoto] = useState("");
+  const [photo, setPhoto] = useState('');
   const [emails, setEmails] = useState([]);
-  const [selectedUser, setSelectedUser] = useState("");
+  const [selectedUser, setSelectedUser] = useState('');
   const [selectedDuration, setSelectedDuration] = useState(1);
-  const { handleSubmit, register } = useForm();
   const durations = [...Array(10).keys()].map((i) => i + 1);
 
   useEffect(() => {
@@ -29,7 +25,7 @@ const Snap = () => {
 
   const onSubmit = async () => {
     await sendSnap({ photo, duration: selectedDuration, email: selectedUser });
-    setPhoto("");
+    setPhoto('');
   };
 
   const handleTakePhoto = (dataUri) => {
@@ -108,8 +104,8 @@ const Snap = () => {
             {selectedUser && (
               <div className="recap">
                 <h4>
-                  Send this snap to{" "}
-                  <span className="rec-email">{selectedUser}</span> with{" "}
+                  Send this snap to{' '}
+                  <span className="rec-email">{selectedUser}</span> with{' '}
                   <span className="rec-duration">{selectedDuration}</span> sec ?
                 </h4>
                 <Button
@@ -125,7 +121,7 @@ const Snap = () => {
                   variant="contained"
                   color="red"
                   endIcon={<PhotoCamera />}
-                  onClick={() => handleTakePhoto("")}
+                  onClick={() => handleTakePhoto('')}
                   className="reset-button"
                 >
                   RESET
@@ -137,7 +133,7 @@ const Snap = () => {
                 variant="contained"
                 color="red"
                 endIcon={<PhotoCamera />}
-                onClick={() => handleTakePhoto("")}
+                onClick={() => handleTakePhoto('')}
                 className="reset-button"
               >
                 RESET

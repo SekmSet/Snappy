@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { getSnaps, readSnap, seenSnap } from "../../service/snap";
-import VisibilityIcon from "@material-ui/icons/Visibility";
-import { makeStyles } from "@material-ui/core/styles";
+import React, { useEffect, useState } from 'react';
+import { getSnaps, readSnap, seenSnap } from '../../service/snap';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import { makeStyles } from '@material-ui/core/styles';
 
 import {
   IconButton,
@@ -9,23 +9,22 @@ import {
   CardHeader,
   Avatar,
   Modal,
-  Backdrop,
   Fade,
-} from "@material-ui/core";
+} from '@material-ui/core';
 
 /**Styles for the modal */
 const useStyles = makeStyles((theme) => ({
   modal: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 }));
 
 const AllSnaps = () => {
   const classes = useStyles();
   const [snaps, setSnaps] = useState([]);
-  const [snap, setSnap] = useState("");
+  const [snap, setSnap] = useState('');
   const [open, setOpenModal] = React.useState(false);
 
   useEffect(() => {
@@ -62,7 +61,7 @@ const AllSnaps = () => {
                 }
                 title={`from ${snap.from}`}
                 subheader={`${snap.duration} second(s)`}
-              />{" "}
+              />{' '}
             </Card>
           </li>
         ))}

@@ -1,10 +1,10 @@
-import React, { useContext, useState, useRef, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { fetchLogin } from "../../service/auth/login";
-import { fetchRegister } from "../../service/auth/register";
-import TextField from "@material-ui/core/TextField";
-import { Button } from "@material-ui/core";
-import { TweenMax } from "gsap";
+import React, { useContext, useState, useRef, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { fetchLogin } from '../../service/auth/login';
+import { fetchRegister } from '../../service/auth/register';
+import TextField from '@material-ui/core/TextField';
+import { Button } from '@material-ui/core';
+import { TweenMax } from 'gsap';
 import UserContext from '../../context/context';
 
 const AuthPage = () => {
@@ -85,16 +85,16 @@ const AuthPage = () => {
   };
   return (
     <div className="form-container">
-      {error !== "" && error}
+      {error !== '' && error}
       <div className="left-container" ref={leftRef}>
         <div className="status-container">
           <h2 className="status-phrase">
             {login
-              ? "Create an account instead ?"
-              : "Arleady have an account ?"}
+              ? 'Create an account instead ?'
+              : 'Arleady have an account ?'}
           </h2>
           <div className="status-change">
-            <Button onClick={animate}>{login ? "Register" : "Login"}</Button>
+            <Button onClick={animate}>{login ? 'Register' : 'Login'}</Button>
           </div>
         </div>
       </div>
@@ -108,10 +108,10 @@ const AuthPage = () => {
               label="Email"
               placeholder="example@example.com"
               inputRef={register({
-                required: "Required",
+                required: 'Required',
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                  message: "invalid email address",
+                  message: 'invalid email address',
                 },
               })}
             />
@@ -124,7 +124,7 @@ const AuthPage = () => {
               name="password"
               type="password"
               inputRef={register({
-                required: "Required",
+                required: 'Required',
               })}
             />
           </div>

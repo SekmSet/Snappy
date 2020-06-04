@@ -1,6 +1,6 @@
-import React, { useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { TweenMax } from "gsap";
+import React, { useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { TweenMax } from 'gsap';
 
 const Header = () => {
   const logoRef = useRef(null);

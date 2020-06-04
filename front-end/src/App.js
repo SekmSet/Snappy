@@ -1,19 +1,19 @@
-import React, { useRef, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React, { useRef, useEffect } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import "./App.css";
+import './App.css';
 
-import Header from "./components/parts/header";
-import Footer from "./components/parts/footer";
-import HomePage from "./views/HomePage";
-import LogoutPage from "./views/auth/Logout";
-import AuthPage from "./views/auth/auth";
-import SnapPage from "./views/snap/index";
-import ShowSnaps from "./views/snap/showAll";
-import { TweenMax } from "gsap";
+import Header from './components/parts/header';
+import Footer from './components/parts/footer';
+import HomePage from './views/HomePage';
+import LogoutPage from './views/auth/Logout';
+import AuthPage from './views/auth/auth';
+import SnapPage from './views/snap/index';
+import ShowSnaps from './views/snap/showAll';
+import { TweenMax } from 'gsap';
 import {UserConsumer, UserProvider} from './context/context';
 
-function App() {
+function App () {
   const appContentRef = useRef(null);
   useEffect(() => {
     TweenMax.fromTo(
