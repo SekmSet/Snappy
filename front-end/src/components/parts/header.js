@@ -1,32 +1,43 @@
-import React, {useContext} from 'react';
-import {
-  Link
-} from 'react-router-dom';
-import UserContext from '../../context/context';
+import React, { useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { TweenMax } from "gsap";
 
 const Header = () => {
-  const { email } = useContext(UserContext);
+  const logoRef = useRef(null);
+  const linksRef = useRef(null);
 
-
+  useEffect(() => {
+    TweenMax.fromTo(logoRef.current, 1, { y: 0, x: -1200 }, { y: 0, x: 0 });
+    TweenMax.fromTo(linksRef.current, 2, { x: 5000 }, { x: 0 });
+  }, []);
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a className="navbar-brand" href="/">MyBlog</a>
-      <div className="collapse navbar-collapse show" >
-        <ul className="navbar-nav mr-auto">
-          <li className="nav-item">
-            <Link className="nav-link" to="/">Home</Link><span className="sr-only">(current)</span>
+    <nav className="navbar-container">
+      <Link className="navbar-logo" to="/" ref={logoRef}>
+        S.
+      </Link>
+      <div className="links-container">
+        <ul className="links" ref={linksRef}>
+          <li className="nav-link-container">
+            <Link className="nav-link" to="/">
+              .HOME
+            </Link>
           </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/snap">snap</Link>
+          <li className="nav-link-container">
+            <Link className="nav-link" to="/snap">
+              .SNAP
+            </Link>
           </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/snaps">Messagerie</Link>
+          <li className="nav-link-container">
+            <Link className="nav-link" to="/snaps">
+              .MESSAGERIE
+            </Link>
           </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/logout">Logout</Link>
+          <li className="nav-link-container">
+            <Link className="nav-link" to="/logout">
+              .LOGOUT
+            </Link>
           </li>
         </ul>
-        <span className="nav-link disabled" >{email}</span>
       </div>
     </nav>
   );
