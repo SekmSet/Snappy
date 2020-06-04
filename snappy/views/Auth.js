@@ -5,6 +5,7 @@ import { vw } from 'react-native-expo-viewport-units';
 import { register, login } from '../services/auth';
 import UserContext from '../context/context';
 
+<<<<<<< HEAD
 export default function Auth ({ navigation }) {
   const { setAuth, isAuth } = useContext(UserContext);
   
@@ -35,6 +36,35 @@ export default function Auth ({ navigation }) {
       navigation.navigate('Home');
     } catch (e) {
       setError(e.response.data.data);
+=======
+    const handleRegister = async (event) => {
+        try {
+            const reg = await register(email, password);
+            console.log(reg)
+            handleLogin()
+        } catch (e) {
+            console.log(e.response.data.data)
+            setErr(e.response.data.data);
+        }
+        // register(email, password).then(data => console.log(data)).then(handleLogin()).catch(err => console.error(err));
+    }
+    const handleLogin = async (event) => {
+        try {
+            const log = await login(email, password);
+            console.log(log)
+            storeData(log.data.data.token);
+            navigation.navigate('Home');
+        } catch (e) {
+            console.log(e.response.data.data)
+            setError(e.response.data.data);
+        }
+    }
+    const handleEmailChange = (value) => {
+        setEmail(value);
+    }
+    const handlePasswordChange = (value) => {
+        setPassword(value);
+>>>>>>> Design users
     }
   };
   const handleEmailChange = (value) => {
