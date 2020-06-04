@@ -1,8 +1,8 @@
-import React from "react";
-import { getCurentUser } from "../../service/auth/login";
+import React, {useContext} from "react";
+import UserContext from '../../context/context'
 
 const Footer = () => {
-  const email = getCurentUser();
+    const {email} = useContext(UserContext);
 
   return (
     <footer className="text-muted">
