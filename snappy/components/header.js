@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 
 import { vw, vh } from 'react-native-expo-viewport-units';
 
-export default function Header({ padding }) {
+export default function Header ({ padding }) {
   if (padding === undefined) {
     padding = true;
   }
@@ -15,20 +15,6 @@ export default function Header({ padding }) {
         source={require('../assets/user1.png')}
       />
       <Text style={styles.name}>Snappy</Text>
-      <View style={styles.setting}>
-        <View style={styles.settingContainer}>
-          <Image
-            style={styles.settingIcon}
-            source={require('../assets/setting.png')}
-          />
-        </View>
-        <View style={styles.dialogContainer}>
-          <Image
-            style={styles.newTchat}
-            source={require('../assets/dialog.png')}
-          />
-        </View>
-      </View>
     </View>
   );
 }

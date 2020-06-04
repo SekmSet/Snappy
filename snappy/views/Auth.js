@@ -6,7 +6,7 @@ import { vw, vh } from 'react-native-expo-viewport-units';
 import { register, login } from '../services/auth';
 import UserContext from '../context/context';
 
-export default function Auth({ navigation }) {
+export default function Auth ({ navigation }) {
   const { setAuth, isAuth } = useContext(UserContext);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);

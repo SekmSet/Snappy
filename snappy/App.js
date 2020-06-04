@@ -13,7 +13,7 @@ import { UserConsumer, UserProvider } from './context/context';
 
 const Stack = createStackNavigator();
 
-function App() {
+function App () {
   return (
     <UserProvider>
       <UserConsumer>

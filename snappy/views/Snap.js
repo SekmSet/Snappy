@@ -8,7 +8,7 @@ import MultiSelect from 'react-native-multiple-select';
 import { vw, vh } from 'react-native-expo-viewport-units';
 // import {Picker} from '@react-native-community/picker';
 import { fetchEmails, sendSnap } from '../services/snap/index';
-export default function App() {
+export default function App () {
   const [hasPermission, setHasPermission] = useState(null);
   const [cameraRef, setCameraRef] = useState(null);
   const [emails, setEmails] = useState([]);
@@ -39,19 +39,19 @@ export default function App() {
     return <Text>No access to camera</Text>;
   }
 
-  async function takePhoto() {
+  async function takePhoto () {
     if (cameraRef) {
       const photo = await cameraRef.takePictureAsync();
       await setSnap(photo.uri);
     }
   }
 
-  async function resetSnap() {
+  async function resetSnap () {
     await setSnap('');
   }
 
-  async function sendNewSnap() {
-    console.log(snap, duration, email[0])
+  async function sendNewSnap () {
+    console.log(snap, duration, email[0]);
     await sendSnap({ photo: snap, duration: duration[0], email: email[0] });
     setSnap('');
   }
@@ -113,8 +113,8 @@ export default function App() {
               submitButtonText="Submit"
             />
           </View>
-          <Button title="Reset" buttonStyle={{ backgroundColor: '#ffd100', marginTop: vh(20), marginBottom: vh(4), width: vw(80), marginLeft: vw(10) }} onPress={resetSnap} />
-          <Button title="Send" buttonStyle={{ backgroundColor: '#575757', width: vw(80), marginLeft: vw(10) }} onPress={sendNewSnap} />
+          <Button title="Send" buttonStyle={{ backgroundColor: '#ffd100', marginTop: vh(20), marginBottom: vh(4), width: vw(80), marginLeft: vw(10) }} onPress={sendNewSnap} />
+          <Button title="Reset" buttonStyle={{ backgroundColor: '#575757', width: vw(80), marginLeft: vw(10) }} onPress={resetSnap} />
         </View>
       }
       {/* _________________________________________________________________________________________________________________________ */}

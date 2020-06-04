@@ -4,7 +4,7 @@ import { Button } from 'react-native-elements';
 import { fetchAllUser } from '../services/allusers';
 import { vw, vh } from 'react-native-expo-viewport-units';
 import Header from '../components/header';
-export default function Auth({ navigation }) {
+export default function Auth ({ navigation }) {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
