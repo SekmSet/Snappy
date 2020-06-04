@@ -20,29 +20,26 @@ const AllSnaps = () => {
         }, duration * 1000);
       });
   };
-
-
-  function Item ({ snap_id, duration, from }) {
-    /*    email = typeof email === 'string' ? email.split('@')[0] : ''; */
+  function Item({ snap_id, duration, from }) {
+    from = typeof from === 'string' ? from.split('@')[0] : '';
     return (
       <View style={styles.item}>
-        <Text>{from} </Text>
-        <Text>{duration} seconds</Text>
+        <Text style={styles.item3}>{from} </Text>
+        <Text style={styles.duration}>{duration}</Text>
+        <Text style={styles.circle}></Text>
         <Button
-          title="Take a Snap"
+          title="Open snap"
           onPress={() => openSnap({ snap_id, duration })}
         />
       </View>
     );
   }
-
   return (
-
     <SafeAreaView>
       <View>
-
       </View>
       <View>
+        <Text style={styles.item2}>If you have some snaps, <br></br>they're gonna be showable here</Text>
         <FlatList
           data={snaps}
           renderItem={({ item }) => <Item snap_id={item.snap_id} duration={item.duration} from={item.from} />}
@@ -56,12 +53,49 @@ const AllSnaps = () => {
     </SafeAreaView>
   );
 };
+
 const styles = StyleSheet.create({
   item: {
-    backgroundColor: '#CCCCCC',
+    backgroundColor: '#CADBDC',
+    color: '#342B38',
+    fontSize: 25,
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
+  },
+  item2: {
+    backgroundColor: '#CADBDC',
+    color: '#342B38',
+    fontSize: 19,
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
+  },
+  item3: {
+    color: '#342B38',
+    fontSize: 20,
+    /*     padding: 20,
+        marginVertical: 8,
+        marginHorizontal: 16, */
+  },
+  circle: {
+    width: 40,
+    height: 40,
+    borderRadius: 1000,
+    backgroundColor: '#FF9595',
+    padding: 20,
+    left: 280,
+    top: 7,
+    position: 'absolute',
+    opacity: .2
+  },
+  duration: {
+    color: '#342B38',
+    fontSize: 19,
+    padding: 20,
+    left: 275,
+    top: -3,
+    position: 'absolute',
   }
 });
 export default AllSnaps;
